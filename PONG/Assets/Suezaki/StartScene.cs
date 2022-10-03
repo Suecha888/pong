@@ -1,18 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class StartScene : MonoBehaviour
 {
     [SerializeField]
     KeyCode key = KeyCode.Space;
-
-    [SerializeField]
-    GameObject manager = new GameObject();
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -20,7 +17,7 @@ public class StartScene : MonoBehaviour
     {
         if(Input.GetKey(key))
         {
-            manager.GetComponent<SceneChange>().ChangeScene();
+            DontDestroy.instance.GetComponent<SceneChange>().ChangeScene();
         }
     }
 }

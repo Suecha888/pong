@@ -24,6 +24,8 @@ public class SceneChange : MonoBehaviour
 
     public void ChangeScene()
     {
-        SceneManager.LoadScene(scenes[++index % max]);
+        ++index;
+        Debug.Log("count:" + max + "index" + index);
+        SceneManager.LoadScene(scenes[index % max]);
     }
 }
