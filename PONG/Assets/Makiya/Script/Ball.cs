@@ -13,6 +13,8 @@ public class Ball : MonoBehaviour
     private Vector3 afterReflectVero = Vector3.zero;
     public GameObject ball;
 
+    public int ScorePlayerId = -1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,16 +30,27 @@ public class Ball : MonoBehaviour
             // 発射時のvelocityを取得
             afterReflectVero = rb.velocity;
             flg = false;
+            ScorePlayerId = -1;
         }
 
         // 画面外にボールが出た時
-        if(transform.position.x >= 11 || transform.position.x <= -11)
+        if(transform.position.x >= 11 && !flg)
         {
-            Instantiate(ball, Vector3.zero, Quaternion.identity);
-            Destroy(gameObject);
+            ScorePlayerId = 0;
+        }
+        else if(transform.position.x <= -11 && !flg)
+        {
+            ScorePlayerId = 1;
         }
     }
 
+    public void ResetBall()
+    {
+        ScorePlayerId = -1;
+        rb.velocity = Vector3.zero;
+        gameObject.transform.position = Vector3.zero;
+        flg = true;
+    }
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -45,12 +58,15 @@ public class Ball : MonoBehaviour
             // 側面に当たったら消える
             if (collision.contacts[0].normal.y > 0)
             {
-                Instantiate(ball, Vector3.zero, Quaternion.identity);
-                Destroy(gameObject);
+                if(rb.velocity.x > 0)
+                    ScorePlayerId = 0;
+                else
+                    ScorePlayerId = 1;
+
                 return;
             }
 
-
+            
 
             float vecx;
             if (afterReflectVero.x > 0)

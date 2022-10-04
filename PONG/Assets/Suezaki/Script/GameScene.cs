@@ -7,6 +7,8 @@ public class GameScene : MonoBehaviour
 {
     // プレイヤーのスコアオブジェクト
     [SerializeField] GameObject score;
+    // ボール
+    [SerializeField] GameObject ball;
     // 試合情報
     Data.win battle_data = new Data.win();
     // Start is called before the first frame update
@@ -20,18 +22,16 @@ public class GameScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (ball.GetComponent<Ball>().ScorePlayerId > -1)
         {
             // 得点
-            DontDestroy.instance.GetComponent<Data>().winner.name = score.transform.GetChild(0).name;
-            DontDestroy.instance.GetComponent<Event>().ScoreEvent[0]?.Invoke(1, battle_data);
+            DontDestroy.instance.GetComponent<Data>().winner.name = score.transform.GetChild(ball.GetComponent<Ball>().ScorePlayerId).name;
+            DontDestroy.instance.GetComponent<Event>().ScoreEvent[ball.GetComponent<Ball>().ScorePlayerId]?.Invoke(1, battle_data);
+            ball.GetComponent<Ball>().ResetBall();
+
+
         }
-        if (Input.GetKey(KeyCode.A))
-        {
-            // 得点
-            DontDestroy.instance.GetComponent<Data>().winner.name = score.transform.GetChild(1).name;
-            DontDestroy.instance.GetComponent<Event>().ScoreEvent[1]?.Invoke(1, battle_data);
-        }
+        
         
         if(battle_data.flg)
         {

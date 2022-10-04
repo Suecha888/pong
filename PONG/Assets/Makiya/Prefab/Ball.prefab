@@ -113,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   ball: {fileID: 6993383278921964911}
+  ScorePlayerId: -1
 --- !u!54 &4211738564801423844
 Rigidbody:
   m_ObjectHideFlags: 0
