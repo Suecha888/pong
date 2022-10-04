@@ -139,6 +139,14 @@ PrefabInstance:
       propertyPath: sceneObject
       value: 
       objectReference: {fileID: 1287936871}
+    - target: {fileID: 4881662309873388330, guid: 8e470406fab36274083c0e515eb49b0d, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3d763c07b63f1254f9579f098a50a5dc, type: 2}
+    - target: {fileID: 4881662309873388330, guid: 8e470406fab36274083c0e515eb49b0d, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7892303464708042159, guid: 3d763c07b63f1254f9579f098a50a5dc, type: 2}
     - target: {fileID: 4881662309873388331, guid: 8e470406fab36274083c0e515eb49b0d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -565,6 +573,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: win_player_name
       objectReference: {fileID: 0}
+    - target: {fileID: 5934537737436675742, guid: 0df6b058a8421fa45a88ab28633dbc44, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3d763c07b63f1254f9579f098a50a5dc, type: 2}
+    - target: {fileID: 5934537737436675742, guid: 0df6b058a8421fa45a88ab28633dbc44, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7892303464708042159, guid: 3d763c07b63f1254f9579f098a50a5dc, type: 2}
     - target: {fileID: 5934537737436675743, guid: 0df6b058a8421fa45a88ab28633dbc44, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
