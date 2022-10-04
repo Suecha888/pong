@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 public class StartScene : MonoBehaviour
 {
-    [SerializeField]
-    KeyCode key = KeyCode.Space;
+    private KeyCode SceneChangeKey;
     
     // Start is called before the first frame update
     void Start()
     {
-
+        SceneChangeKey = GetComponent<Key>().GetSceneChangeKey();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(key))
+        if(Input.GetKey(SceneChangeKey))
         {
             DontDestroy.instance.GetComponent<SceneChange>().ChangeScene();
         }
     }
+    
+    
 }
