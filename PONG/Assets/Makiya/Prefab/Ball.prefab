@@ -93,7 +93,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6993383278921964911}
-  m_Material: {fileID: 13400000, guid: 44f1f6835ad4df7499d15709f7963788, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -111,6 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e919eaf8b2e4e4f9ebc53b0fa13c29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 3
+  ball: {fileID: 6993383278921964911}
 --- !u!54 &4211738564801423844
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -125,5 +127,5 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 120
   m_CollisionDetection: 0
