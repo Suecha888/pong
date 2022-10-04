@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     public float speed = 3.0f;
+    bool flg = true;
     private Rigidbody rb;
     // ボールが当たった物体の法線ベクトル
     private Vector3 objNomalVector = Vector3.zero;
@@ -21,11 +22,12 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && flg)
         {
             rb.velocity = new Vector3(speed, speed, 0);
             // 発射時のvelocityを取得
             afterReflectVero = rb.velocity;
+            flg = false;
         }
 
         // 画面外にボールが出た時
