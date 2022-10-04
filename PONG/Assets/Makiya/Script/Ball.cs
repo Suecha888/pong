@@ -42,9 +42,24 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            // 当たった物体の法線ベクトルを取得
-            objNomalVector = collision.contacts[0].normal;
-            Vector3 reflectVec = Vector3.Reflect(afterReflectVero, objNomalVector);
+            // 側面に当たったら消える
+            if (collision.contacts[0].normal.y > 0)
+            {
+                Instantiate(ball, Vector3.zero, Quaternion.identity);
+                Destroy(gameObject);
+                return;
+            }
+
+
+
+            float vecx;
+            if (afterReflectVero.x > 0)
+                vecx = -1;
+            else
+                vecx = 1;
+
+            Vector3 returnVec = new Vector3(vecx, Random.Range(-1.0f, 1.0f), 0).normalized;
+            rb.velocity = afterReflectVero.magnitude * returnVec;
             // 計算した反射ベクトルを保存
             afterReflectVero = rb.velocity;
         }
