@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    public float speed = 3.0f;
+    public float speed = 2.0f;
     bool flg = true;
     private Rigidbody rb;
     // ボールが当たった物体の法線ベクトル
@@ -40,16 +40,23 @@ public class Ball : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Wall")
+        if (collision.gameObject.tag == "Player")
+        {
+            // 当たった物体の法線ベクトルを取得
+            objNomalVector = collision.contacts[0].normal;
+            Vector3 reflectVec = Vector3.Reflect(afterReflectVero, objNomalVector);
+            // 計算した反射ベクトルを保存
+            afterReflectVero = rb.velocity;
+        }
+
+        if (collision.gameObject.tag == "Wall")
         {
             // 当たった物体の法線ベクトルを取得
             objNomalVector = collision.contacts[0].normal;
             Vector3 reflectVec = Vector3.Reflect(afterReflectVero, objNomalVector);
             rb.velocity = reflectVec;
-
             // 計算した反射ベクトルを保存
             afterReflectVero = rb.velocity;
         }
-
     }
 }
