@@ -5,10 +5,14 @@ using UnityEngine;
 public class EndScene : MonoBehaviour
 {
     private KeyCode SceneChangeKey;
+    [SerializeField] GameObject winner;
 
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroy.instance.GetComponent<Event>().WinnerEvent?.AddListener(winner.GetComponent<ShowWinner>().showWinner);
+        // èüé“ÇÃï\é¶
+        DontDestroy.instance.GetComponent<Event>().WinnerEvent?.Invoke(DontDestroy.instance.GetComponent<Data>().winner.name);
         SceneChangeKey = GetComponent<Key>().GetSceneChangeKey();
     }
 

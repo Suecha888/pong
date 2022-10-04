@@ -6,13 +6,15 @@ using UnityEngine.Events;
 public class Event : MonoBehaviour
 {
     [HideInInspector]
-    public List<UnityEvent<int>> ScoreEvent = new List<UnityEvent<int>>();
+    public List<UnityEvent<int,Data.win>> ScoreEvent = new List<UnityEvent<int,Data.win>>();
+    [HideInInspector]
+    public UnityEvent<string> WinnerEvent = new UnityEvent<string>();
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < 3; ++i)
+        for(int i = 0; i < GetComponent<Setting>().GetPlayerNum(); ++i)
         {
-            UnityEvent<int> ShowScore = new UnityEvent<int>();
+            UnityEvent<int,Data.win> ShowScore = new UnityEvent<int,Data.win>();
             ScoreEvent.Add(ShowScore);
         }
     }

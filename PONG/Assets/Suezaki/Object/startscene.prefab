@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6599121611054888235}
   - component: {fileID: 1121346886857991280}
+  - component: {fileID: 369930165}
   m_Layer: 0
   m_Name: startscene
   m_TagString: Untagged
@@ -45,3 +46,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneChangeKey: 32
+--- !u!114 &369930165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6599121611054888233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 761800d4a00ca9c40b980e0239f6358f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

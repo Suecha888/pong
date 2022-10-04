@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8405838433099193457}
   - component: {fileID: 8405838433099193459}
   - component: {fileID: -911299521185601334}
+  - component: {fileID: 1401046180}
+  - component: {fileID: 8405838433296252558}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -75,3 +77,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreEvent: []
+  WinnerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1401046180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8405838433099193456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fddf7918a712b74ca7a6762777f1d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerNum: 2
+  MaxScore: 70
+--- !u!114 &8405838433296252558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8405838433099193456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4434c8b95403a4d93bb20218357ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

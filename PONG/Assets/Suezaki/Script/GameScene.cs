@@ -5,17 +5,16 @@ using UnityEngine.Events;
 
 public class GameScene : MonoBehaviour
 {
-
-    float timer = 0;
+    // プレイヤーのスコアオブジェクト
     [SerializeField] GameObject score;
+    // 試合情報
+    Data.win battle_data = new Data.win();
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(score.transform.GetChild(0).ToString());
-        //DontDestroy.instance.GetComponent<Event>().ScoreEvent = new UnityEvent<int>[score.transform.childCount];
+        // スコアイベントの登録
         for(int i = 0; i < score.transform.childCount; ++i)
         DontDestroy.instance.GetComponent<Event>().ScoreEvent[i].AddListener(score.transform.GetChild(i).GetComponent<ShowScore>().ShowScoreText);
-        //DontDestroy.instance.GetComponent<Event>().ScoreEvent[1].AddListener(score.transform.GetChild(1).GetComponent<ShowScore>().ShowScoreText);
     }
 
     // Update is called once per frame
@@ -23,16 +22,20 @@ public class GameScene : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            DontDestroy.instance.GetComponent<Event>().ScoreEvent[0]?.Invoke(1);
+            // 得点
+            DontDestroy.instance.GetComponent<Data>().winner.name = score.transform.GetChild(0).name;
+            DontDestroy.instance.GetComponent<Event>().ScoreEvent[0]?.Invoke(1, battle_data);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            DontDestroy.instance.GetComponent<Event>().ScoreEvent[1]?.Invoke(1);
+            // 得点
+            DontDestroy.instance.GetComponent<Data>().winner.name = score.transform.GetChild(1).name;
+            DontDestroy.instance.GetComponent<Event>().ScoreEvent[1]?.Invoke(1, battle_data);
         }
-        timer += Time.deltaTime;
         
-        if(timer >= 5)
+        if(battle_data.flg)
         {
+            // シーン遷移
             DontDestroy.instance.GetComponent<SceneChange>().ChangeScene();
         }
     }

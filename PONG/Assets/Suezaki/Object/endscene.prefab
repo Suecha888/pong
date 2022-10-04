@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 855426878344874354}
   - component: {fileID: 855426878344874355}
+  - component: {fileID: 1287936872}
   m_Layer: 0
   m_Name: endscene
   m_TagString: Untagged
@@ -44,4 +45,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae706bd157517f0418353cbf8b140ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 32
+  winner: {fileID: 0}
+--- !u!114 &1287936872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855426878344874352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a700be6e239cf042a4177ec9b9f730f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneChangeKey: 32
