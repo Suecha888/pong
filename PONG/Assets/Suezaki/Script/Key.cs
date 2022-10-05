@@ -6,6 +6,8 @@ public class Key : MonoBehaviour
 {
     [SerializeField]
     KeyCode SceneChangeKey = KeyCode.Space;
+    [SerializeField]
+    KeyCode BallStartKey = KeyCode.Space;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +22,10 @@ public class Key : MonoBehaviour
     public KeyCode GetSceneChangeKey()
     {
         return SceneChangeKey;
+    }
+
+    public KeyCode GetBallStartKey()
+    {
+        return BallStartKey;
     }
 }

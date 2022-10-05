@@ -14,7 +14,8 @@ public class Ball : MonoBehaviour
     public GameObject ball;
 
     public int ScorePlayerId = -1;
-
+    private int OldScorePlayerId = -1;
+    private GameObject message;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,11 +27,36 @@ public class Ball : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && flg)
         {
-            rb.velocity = new Vector3(speed, speed, 0);
+            int dirX = 0;
+            switch(OldScorePlayerId)
+            {
+                case -1:
+                    {
+                        if (Random.value > 0.5)
+                            dirX = 1;
+                        else
+                            dirX = -1;
+                        break;
+                    }
+                case 0:
+                    {
+                        dirX = 1;
+                        break;
+                    }
+                case 1:
+                    {
+                        dirX = -1;
+                        break;
+                    }
+
+            }
+            
+
+            Vector3 dir = new Vector3(dirX,0,0).normalized;
+            rb.velocity = speed * dir;
             // 発射時のvelocityを取得
             afterReflectVero = rb.velocity;
             flg = false;
-            ScorePlayerId = -1;
         }
 
         // 画面外にボールが出た時
@@ -47,12 +73,17 @@ public class Ball : MonoBehaviour
     {
         flg = false;
     }
+    public bool GetBallMoveFlg()
+    {
+        return flg;
+    }
     public void ResetBall()
     {
-        ScorePlayerId = -1;
         rb.velocity = Vector3.zero;
         gameObject.transform.position = Vector3.zero;
         flg = true;
+        OldScorePlayerId = ScorePlayerId;
+        ScorePlayerId = -1;
     }
     void OnCollisionEnter(Collision collision)
     {
