@@ -32,27 +32,42 @@ public class GameScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (battle_data.flg && !scenechange)
+        if(battle_data.flg)
         {
-            // シーン遷移
-            DontDestroy.instance.GetComponent<SceneChange>().Invoke("ChangeScene", EndToChangeTime);
-            ball.GetComponent<Ball>().StopBall();
-            scenechange = true;
+            if (!scenechange)
+            {
+                message.SetActive(false);
+                // シーン遷移
+                DontDestroy.instance.GetComponent<SceneChange>().Invoke("ChangeScene", EndToChangeTime);
+                ball.GetComponent<Ball>().StopBall();
+                scenechange = true;
+            }
+        }
+        else
+        {
+            // press ~~ の表示
+            if (ball.GetComponent<Ball>().GetBallMoveFlg())
+            {
+                message.SetActive(true);
+            }
+            else
+            {
+                message.SetActive(false);
+            }
+
+
+            if (ball.GetComponent<Ball>().ScorePlayerId > -1)
+            {
+                // 得点
+                DontDestroy.instance.GetComponent<Data>().winner.name = score.transform.GetChild(ball.GetComponent<Ball>().ScorePlayerId).name;
+                DontDestroy.instance.GetComponent<Event>().ScoreEvent[ball.GetComponent<Ball>().ScorePlayerId].Invoke(1, battle_data);
+                ball.GetComponent<Ball>().ResetBall();
+            }
+
+            
         }
 
-        if (ball.GetComponent<Ball>().ScorePlayerId > -1)
-        {
-            message.SetActive(true);
-            // 得点
-            DontDestroy.instance.GetComponent<Data>().winner.name = score.transform.GetChild(ball.GetComponent<Ball>().ScorePlayerId).name;
-            DontDestroy.instance.GetComponent<Event>().ScoreEvent[ball.GetComponent<Ball>().ScorePlayerId]?.Invoke(1, battle_data);
-            ball.GetComponent<Ball>().ResetBall();
-        }
         
-        if(!ball.GetComponent<Ball>().GetBallMoveFlg())
-        {
-            message.SetActive(false);
-        }
         
         
     }
