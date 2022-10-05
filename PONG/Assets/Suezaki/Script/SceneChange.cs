@@ -26,4 +26,5 @@ public class SceneChange : MonoBehaviour
     {
         SceneManager.LoadScene(scenes[++index % max]);
     }
+    
 }

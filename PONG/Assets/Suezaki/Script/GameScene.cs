@@ -11,6 +11,9 @@ public class GameScene : MonoBehaviour
     [SerializeField] GameObject ball;
     // ‡î•ñ
     Data.win battle_data = new Data.win();
+    // ‡I—¹‚©‚ç‘JˆÚ‚Ü‚Å‚ÌŠÔ
+    [SerializeField] float EndToChangeTime = 1.0f;
+    private bool scenechange = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,10 +36,12 @@ public class GameScene : MonoBehaviour
         }
         
         
-        if(battle_data.flg)
+        if(battle_data.flg && !scenechange)
         {
             // ƒV[ƒ“‘JˆÚ
-            DontDestroy.instance.GetComponent<SceneChange>().ChangeScene();
+            DontDestroy.instance.GetComponent<SceneChange>().Invoke("ChangeScene",EndToChangeTime);
+            ball.GetComponent<Ball>().StopBall();
+            scenechange = true;
         }
     }
 }

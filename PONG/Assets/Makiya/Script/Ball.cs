@@ -43,7 +43,10 @@ public class Ball : MonoBehaviour
             ScorePlayerId = 1;
         }
     }
-
+    public void StopBall()
+    {
+        flg = false;
+    }
     public void ResetBall()
     {
         ScorePlayerId = -1;
