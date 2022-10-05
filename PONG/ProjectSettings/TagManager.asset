@@ -13,11 +13,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - wall
+  - player
+  - ball
+  - player_limit
+  - object
   - 
   - 
   - 

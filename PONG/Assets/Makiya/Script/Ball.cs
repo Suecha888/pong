@@ -34,11 +34,11 @@ public class Ball : MonoBehaviour
         }
 
         // 画面外にボールが出た時
-        if(transform.position.x >= 11 && !flg)
+        if(transform.position.x >= 9 && !flg)
         {
             ScorePlayerId = 0;
         }
-        else if(transform.position.x <= -11 && !flg)
+        else if(transform.position.x <= -9 && !flg)
         {
             ScorePlayerId = 1;
         }
@@ -56,7 +56,7 @@ public class Ball : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             // 側面に当たったら消える
-            if (collision.contacts[0].normal.y > 0)
+            if (collision.contacts[0].normal.x == 0)
             {
                 if(rb.velocity.x > 0)
                     ScorePlayerId = 0;

@@ -6,6 +6,7 @@ public class Player2 : MonoBehaviour
 {
     public float speed = 3.0f;
 
+    public Player.STATUS status = Player.STATUS.normal;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,14 +17,16 @@ public class Player2 : MonoBehaviour
     void Update()
     {
         // è„à⁄ìÆ
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) && status != Player.STATUS.limit_up)
         {
             transform.position += transform.up * speed * Time.deltaTime;
+            status = Player.STATUS.normal;
         }
         // â∫à⁄ìÆ
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow) && status != Player.STATUS.limit_down)
         {
             transform.position -= transform.up * speed * Time.deltaTime;
+            status = Player.STATUS.normal;
         }
     }
 }
