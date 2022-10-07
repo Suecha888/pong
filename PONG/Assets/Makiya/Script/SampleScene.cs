@@ -16,11 +16,11 @@ public class SampleScene : MonoBehaviourPunCallbacks
     }
 
     // マスターサーバーへの接続が成功した時に呼ばれるコールバック
-    public override void OnConnectedToMaster()
-    {
-        // "Room"という名前のルームに参加する。（ルームが存在しなければ作成して参加する）
-        PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions(), TypedLobby.Default);
-    }
+    //public override void OnConnectedToMaster()
+    //{
+    //    // "Room"という名前のルームに参加する。（ルームが存在しなければ作成して参加する）
+    //    //PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions(), TypedLobby.Default);
+    //}
 
     // ゲームサーバーへの接続が成功した時に呼ばれるコールバック
     public override void OnJoinedRoom()
