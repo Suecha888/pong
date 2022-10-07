@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Ball : MonoBehaviour
+public class Ball : MonoBehaviourPunCallbacks
 {
     public float speed = 2.0f;
-    bool flg = true;
+    public static bool flg = true;
     private Rigidbody rb;
     // ボールが当たった物体の法線ベクトル
     private Vector3 objNomalVector = Vector3.zero;
@@ -16,6 +17,7 @@ public class Ball : MonoBehaviour
     public int ScorePlayerId = -1;
     private int OldScorePlayerId = -1;
     private GameObject message;
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -87,7 +89,7 @@ public class Ball : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
         {
             // 側面に当たったら消える
             if (collision.contacts[0].normal.x == 0)
@@ -112,6 +114,7 @@ public class Ball : MonoBehaviour
             rb.velocity = afterReflectVero.magnitude * returnVec;
             // 計算した反射ベクトルを保存
             afterReflectVero = rb.velocity;
+            Debug.Log(rb.velocity);
         }
 
         if (collision.gameObject.tag == "Wall")

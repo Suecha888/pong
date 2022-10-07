@@ -25,6 +25,7 @@ public class AvatarController : MonoBehaviourPunCallbacks
             //{
             //    transform.position -= transform.up * speed * Time.deltaTime;
             //}
+
         }
     }
 }

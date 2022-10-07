@@ -16,17 +16,18 @@ public class SampleScene : MonoBehaviourPunCallbacks
     }
 
     // マスターサーバーへの接続が成功した時に呼ばれるコールバック
-    //public override void OnConnectedToMaster()
-    //{
-    //    // "Room"という名前のルームに参加する。（ルームが存在しなければ作成して参加する）
-    //    //PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions(), TypedLobby.Default);
-    //}
+    public override void OnConnectedToMaster()
+    {
+        // "Room"という名前のルームに参加する。（ルームが存在しなければ作成して参加する）
+        PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions(), TypedLobby.Default);
+    }
 
     // ゲームサーバーへの接続が成功した時に呼ばれるコールバック
     public override void OnJoinedRoom()
     {
         // ランダムな座標に自身のアバター（ネットワークオブジェクト）を生成する
-        var position = new Vector3(Random.Range(-3.0f, 3.0f), Random.Range(-3.0f, 3.0f));
+        var position = new Vector3(9.82f, 0);
         PhotonNetwork.Instantiate("Avatar", position, Quaternion.identity);
+        PhotonNetwork.Instantiate("Ball", Vector3.zero, Quaternion.identity);
     }
 }
