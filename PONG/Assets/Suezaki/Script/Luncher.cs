@@ -12,6 +12,9 @@ public class Luncher : MonoBehaviourPunCallbacks
 
     private string gameVersion = "1";
 
+    private bool isConnecting;
+
+    private bool switchFlg = false;
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -19,7 +22,7 @@ public class Luncher : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        Connect();
+        //Connect();
     }
 
     // Update is called once per frame
@@ -39,7 +42,7 @@ public class Luncher : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.GameVersion = gameVersion;
             // PhotonServerSettingsの設定内容を使ってマスターサーバーへ接続する
-            PhotonNetwork.ConnectUsingSettings();
+            isConnecting = PhotonNetwork.ConnectUsingSettings();
         }
     }
 
@@ -47,6 +50,11 @@ public class Luncher : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
+        if(isConnecting)
+        {
+            PhotonNetwork.JoinRandomRoom();
+            isConnecting = false;
+        }
         Debug.Log("suezaki/Luncher: OnConnectedToMaster() was called by PUN");
     }
 
@@ -65,5 +73,7 @@ public class Luncher : MonoBehaviourPunCallbacks
     {
         Debug.Log("suezaki/Luncher: OnJoinedRoom() called by PUN. Now this client is in a room.");
     }
+
+    
     #endregion
 }

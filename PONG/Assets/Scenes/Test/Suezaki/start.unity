@@ -786,6 +786,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 369930165, guid: 3bb3dacaca2857145b43a278c5333ce1, type: 3}
+      propertyPath: Luncher
+      value: 
+      objectReference: {fileID: 106440084}
     - target: {fileID: 6599121611054888233, guid: 3bb3dacaca2857145b43a278c5333ce1, type: 3}
       propertyPath: m_Name
       value: startscene

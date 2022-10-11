@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+using Photon.Pun;
 public class GameScene : MonoBehaviour
 {
     // プレイヤーのスコアオブジェクト
@@ -23,7 +24,12 @@ public class GameScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BallStartKey = GetComponent<Key>().GetBallStartKey();
+        // クライアント（マスター以外）の場合にずれてしまうシーンのインデックスを整理
+        if(DontDestroy.instance.GetComponent<SceneChange>().getIndex() != 1)
+        DontDestroy.instance.GetComponent<SceneChange>().setIndex(1);
+
+        DontDestroy.instance.GetComponent<SceneChange>().leave = false;
+           BallStartKey = GetComponent<Key>().GetBallStartKey();
         // スコアイベントの登録
         for (int i = 0; i < score.transform.childCount; ++i)
         DontDestroy.instance.GetComponent<Event>().ScoreEvent[i].AddListener(score.transform.GetChild(i).GetComponent<ShowScore>().ShowScoreText);
@@ -32,6 +38,12 @@ public class GameScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKey(KeyCode.C))
+        {
+            //if(PhotonNetwork.IsMasterClient)
+            DontDestroy.instance.GetComponent<SceneChange>().UpdateLeave();
+            DontDestroy.instance.GetComponent<SceneChange>().LeaveRoom();
+        }
         if(battle_data.flg)
         {
             if (!scenechange)
