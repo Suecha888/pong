@@ -44,4 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081bc69f43d82154abd78671f0039d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 0}
+  score: {fileID: 2291527329526972433, guid: da7e3b335e2d63948a0da458d13e1f6c, type: 3}
+  ball: {fileID: 5401996164373971202, guid: 7f6467f30c7f26545964aac519dd04af, type: 3}
+  message: {fileID: 5101144449022671185, guid: 626d126402cc2c5478d07c56be0bd155, type: 3}
+  EndToChangeTime: 1
