@@ -17,48 +17,45 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
     public int ScorePlayerId = -1;
     private int OldScorePlayerId = -1;
     private GameObject message;
+
+    private int dirX = 0;
+    private bool setDirFlg = false;
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
     }
 
+    
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && flg)
+        if(!PhotonNetwork.IsMasterClient)
         {
-            int dirX = 0;
-            switch(OldScorePlayerId)
-            {
-                case -1:
-                    {
-                        if (Random.value > 0.5)
-                            dirX = 1;
-                        else
-                            dirX = -1;
-                        break;
-                    }
-                case 0:
-                    {
-                        dirX = 1;
-                        break;
-                    }
-                case 1:
-                    {
-                        dirX = -1;
-                        break;
-                    }
+            return;
+        }
 
+        if(flg)
+        {
+            SetDir();
+            
+            if(Input.GetKeyDown(KeyCode.Space) && (((dirX == -1)&&(PhotonNetwork.IsMasterClient))||((dirX == 1)&&(!PhotonNetwork.IsMasterClient))))
+            {
+                Vector3 dir = new Vector3(dirX, 0, 0).normalized;
+                rb.velocity = speed * dir;
+                // 発射時のvelocityを取得
+                afterReflectVero = rb.velocity;
+                flg = false;
+                setDirFlg = false;
             }
+        }
+        //if(Input.GetKeyDown(KeyCode.Space) && flg)
+        //{
+            
             
 
-            Vector3 dir = new Vector3(dirX,0,0).normalized;
-            rb.velocity = speed * dir;
-            // 発射時のvelocityを取得
-            afterReflectVero = rb.velocity;
-            flg = false;
-        }
+            
+        //}
 
         // 画面外にボールが出た時
         if(transform.position.x >= 9 && !flg)
@@ -141,6 +138,36 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
             OldScorePlayerId = (int)stream.ReceiveNext();
             flg = (bool)stream.ReceiveNext();
             transform.position = (Vector3)stream.ReceiveNext();
+        }
+    }
+
+    void SetDir()
+    {
+        if (setDirFlg)
+            return;
+
+        setDirFlg = true;
+        switch (OldScorePlayerId)
+        {
+            case -1:
+                {
+                    if (Random.value > 0.5)
+                        dirX = 1;
+                    else
+                        dirX = -1;
+                    break;
+                }
+            case 0:
+                {
+                    dirX = 1;
+                    break;
+                }
+            case 1:
+                {
+                    dirX = -1;
+                    break;
+                }
+
         }
     }
 }

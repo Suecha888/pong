@@ -36,8 +36,8 @@ public class GameScene : MonoBehaviourPunCallbacks,IPunObservable
         DontDestroy.instance.GetComponent<SceneChange>().leave = false;
            BallStartKey = GetComponent<Key>().GetBallStartKey();
         // スコアイベントの登録
-        for (int i = 0; i < score.transform.GetChild(1).transform.childCount; ++i)
-        DontDestroy.instance.GetComponent<Event>().ScoreEvent[i].AddListener(score.transform.GetChild(1).transform.GetChild(i).GetComponent<ShowScore>().ShowScoreText);
+        for (int i = 0; i < score.transform.GetChild(0).transform.childCount; ++i)
+        DontDestroy.instance.GetComponent<Event>().ScoreEvent[i].AddListener(score.transform.GetChild(0).transform.GetChild(i).GetComponent<ShowScore>().ShowScoreText);
 
         
     }
@@ -78,7 +78,7 @@ public class GameScene : MonoBehaviourPunCallbacks,IPunObservable
 
             if (ball.GetComponent<Ball>().ScorePlayerId > -1)
             {// 得点
-                DontDestroy.instance.GetComponent<Data>().winner.name = score.transform.GetChild(1).transform.GetChild(ball.GetComponent<Ball>().ScorePlayerId).name;
+                DontDestroy.instance.GetComponent<Data>().winner.name = score.transform.GetChild(0).transform.GetChild(ball.GetComponent<Ball>().ScorePlayerId).name;
                 DontDestroy.instance.GetComponent<Event>().ScoreEvent[ball.GetComponent<Ball>().ScorePlayerId].Invoke(1, battle_data);
                 ball.GetComponent<Ball>().ResetBall();
             }

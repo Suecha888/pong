@@ -18,6 +18,8 @@ public class Luncher : MonoBehaviourPunCallbacks
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.SendRate = 120;
+        PhotonNetwork.SerializationRate = 120;
     }
     // Start is called before the first frame update
     void Start()
