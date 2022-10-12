@@ -8,6 +8,7 @@ using Photon.Pun;
 public class InputName : MonoBehaviourPunCallbacks
 {
     public TMP_Text tmpName;
+    public GameObject JoinButton;
 
     // プレイヤーの名前設定
     public void SetName()
@@ -21,8 +22,11 @@ public class InputName : MonoBehaviourPunCallbacks
         //Debug.Log(PhotonNetwork.NickName);
 
         // InputFieldの文字を消去
-        TMP_InputField deleteName = GameObject.Find("InputField (TMP)").GetComponent<TMP_InputField>();
+        TMP_InputField deleteName = GameObject.Find("InputNickname").GetComponent<TMP_InputField>();
         deleteName.text = "";
+
+        // Joinボタンの表示
+        JoinButton.SetActive(true);
     }
 
     // Start is called before the first frame update
