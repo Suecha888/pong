@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 using Photon.Pun;
-public class GameScene : MonoBehaviour
+public class GameScene : MonoBehaviourPunCallbacks,IPunObservable
 {
     // プレイヤーのスコアオブジェクト
     [SerializeField] GameObject score;
@@ -24,35 +24,28 @@ public class GameScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+
+        ball = GameObject.FindGameObjectWithTag("Ball");
+        score = GameObject.Find("score(Clone)");
+        message = GameObject.Find("pressbutton(Clone)");
         // クライアント（マスター以外）の場合にずれてしまうシーンのインデックスを整理
-        if(DontDestroy.instance.GetComponent<SceneChange>().getIndex() != 1)
+        if (DontDestroy.instance.GetComponent<SceneChange>().getIndex() != 1)
         DontDestroy.instance.GetComponent<SceneChange>().setIndex(1);
 
         DontDestroy.instance.GetComponent<SceneChange>().leave = false;
            BallStartKey = GetComponent<Key>().GetBallStartKey();
         // スコアイベントの登録
-        for (int i = 0; i < score./*transform.GetChild(1).*/transform.childCount; ++i)
-        DontDestroy.instance.GetComponent<Event>().ScoreEvent[i].AddListener(score/*.transform.GetChild(1)*/.transform.GetChild(i).GetComponent<ShowScore>().ShowScoreText);
+        for (int i = 0; i < score.transform.GetChild(1).transform.childCount; ++i)
+        DontDestroy.instance.GetComponent<Event>().ScoreEvent[i].AddListener(score.transform.GetChild(1).transform.GetChild(i).GetComponent<ShowScore>().ShowScoreText);
 
-        if (PhotonNetwork.IsMasterClient)
-        {
-            PhotonNetwork.InstantiateRoomObject("wall", new Vector3(0.0f, 5.0f, 0.0f), Quaternion.identity);
-            PhotonNetwork.InstantiateRoomObject("wall", new Vector3(0.0f, -5.0f, 0.0f), Quaternion.identity);
-            //PhotonNetwork.InstantiateRoomObject("ball", new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
-            //PhotonNetwork.InstantiateRoomObject("gamescene", new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
-            //PhotonNetwork.InstantiateRoomObject("Line", new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
-            //PhotonNetwork.InstantiateRoomObject("score", new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
-            //PhotonNetwork.InstantiateRoomObject("pressbutton", new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
-            PhotonNetwork.Instantiate("Player1", new Vector3(-8.5f, 0.0f, 0.0f), Quaternion.identity);
-        }
-        else
-            PhotonNetwork.Instantiate("Player1", new Vector3(8.5f, 0.0f, 0.0f), Quaternion.identity);
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if(Input.GetKey(KeyCode.C))
         {
             //if(PhotonNetwork.IsMasterClient)
@@ -84,9 +77,8 @@ public class GameScene : MonoBehaviour
 
 
             if (ball.GetComponent<Ball>().ScorePlayerId > -1)
-            {
-                // 得点
-                DontDestroy.instance.GetComponent<Data>().winner.name = score/*.transform.GetChild(1)*/.transform.GetChild(ball.GetComponent<Ball>().ScorePlayerId).name;
+            {// 得点
+                DontDestroy.instance.GetComponent<Data>().winner.name = score.transform.GetChild(1).transform.GetChild(ball.GetComponent<Ball>().ScorePlayerId).name;
                 DontDestroy.instance.GetComponent<Event>().ScoreEvent[ball.GetComponent<Ball>().ScorePlayerId].Invoke(1, battle_data);
                 ball.GetComponent<Ball>().ResetBall();
             }
@@ -98,4 +90,23 @@ public class GameScene : MonoBehaviour
         
         
     }
+    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if(stream.IsWriting)
+        {
+            stream.SendNext(score);
+            stream.SendNext(ball);
+            stream.SendNext(message);
+            stream.SendNext(battle_data);
+        }
+        else
+        {
+            score = (GameObject)stream.ReceiveNext();
+            ball = (GameObject)stream.ReceiveNext();
+            message = (GameObject)stream.ReceiveNext();
+            battle_data = (Data.win)stream.ReceiveNext();
+        }
+    }
+
+    
 }

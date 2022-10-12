@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Ball : MonoBehaviour
+public class Ball : MonoBehaviourPunCallbacks,IPunObservable
 {
     public float speed = 2.0f;
     bool flg = true;
@@ -122,6 +123,24 @@ public class Ball : MonoBehaviour
             rb.velocity = reflectVec;
             // 計算した反射ベクトルを保存
             afterReflectVero = rb.velocity;
+        }
+    }
+
+    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if(stream.IsWriting)
+        {
+            stream.SendNext(ScorePlayerId);
+            stream.SendNext(OldScorePlayerId);
+            stream.SendNext(flg);
+            stream.SendNext(transform.position);
+        }
+        else
+        {
+            ScorePlayerId = (int)stream.ReceiveNext();
+            OldScorePlayerId = (int)stream.ReceiveNext();
+            flg = (bool)stream.ReceiveNext();
+            transform.position = (Vector3)stream.ReceiveNext();
         }
     }
 }

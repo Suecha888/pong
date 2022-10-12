@@ -16,8 +16,7 @@ GameObject:
   - component: {fileID: 4404850091455014721}
   - component: {fileID: 2359648036481465155}
   - component: {fileID: 1524225605355827478}
-  - component: {fileID: 2131419591377945793}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ball
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -32,9 +31,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5401996164373971202}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2429852, y: 0.45219052, z: -0.04856354}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -121,8 +120,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
+  - {fileID: 4404850091455014721}
   - {fileID: 1524225605355827478}
-  - {fileID: 2131419591377945793}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -138,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e919eaf8b2e4e4f9ebc53b0fa13c29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 5
   ball: {fileID: 5401996164373971202}
   ScorePlayerId: -1
 --- !u!54 &2359648036481465155
@@ -173,19 +172,3 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 1
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
---- !u!114 &2131419591377945793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5401996164373971202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 0
-  m_SynchronizeScale: 1
-  m_UseLocal: 0

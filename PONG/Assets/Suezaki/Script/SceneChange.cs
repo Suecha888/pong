@@ -64,7 +64,7 @@ public class SceneChange : MonoBehaviourPunCallbacks
     }
     public int getIndex()
     {
-        return index;
+        return index % max;
     }
     #region Photon Callbacks
 

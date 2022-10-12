@@ -5,13 +5,14 @@ using TMPro;
 
 public class ShowPressButton : MonoBehaviour
 {
-    [SerializeField]
+    //[SerializeField]
     GameObject sceneObject;
     TextMeshProUGUI pressButtonText;
     // Start is called before the first frame update
     void Start()
     {
         pressButtonText = GetComponent<TextMeshProUGUI>();
+        sceneObject = GameObject.FindGameObjectWithTag("scene");
         pressButtonText.text = new string( "press " + sceneObject?.GetComponent<Key>().GetSceneChangeKey().ToString());
     }
 

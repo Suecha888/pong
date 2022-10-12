@@ -668,6 +668,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 713613783009501663, guid: 8d6bad65a4d61854c93a494b5c8bcf45, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 713613783009501663, guid: 8d6bad65a4d61854c93a494b5c8bcf45, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 713613783009501663, guid: 8d6bad65a4d61854c93a494b5c8bcf45, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d6bad65a4d61854c93a494b5c8bcf45, type: 3}
 --- !u!1001 &4881662310526611023
@@ -794,6 +806,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: startscene
       objectReference: {fileID: 0}
+    - target: {fileID: 6599121611054888233, guid: 3bb3dacaca2857145b43a278c5333ce1, type: 3}
+      propertyPath: m_TagString
+      value: scene
+      objectReference: {fileID: 0}
     - target: {fileID: 6599121611054888235, guid: 3bb3dacaca2857145b43a278c5333ce1, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -849,7 +865,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1401046180, guid: 163ff3ff6057fab43a55da027ffb685a, type: 3}
       propertyPath: MaxScore
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8405838433099193456, guid: 163ff3ff6057fab43a55da027ffb685a, type: 3}
       propertyPath: m_Name

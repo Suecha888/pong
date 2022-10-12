@@ -11,11 +11,11 @@ public class limitmove : MonoBehaviour
         {
             if (transform.parent.position.y > 0)
             {
-                GetComponentInParent<Player>().status = Player.STATUS.limit_up;
+                GetComponentInParent<PlayerOnline>().status = PlayerOnline.STATUS.limit_up;
             }
             else
             {
-                GetComponentInParent<Player>().status = Player.STATUS.limit_down;
+                GetComponentInParent<PlayerOnline>().status = PlayerOnline.STATUS.limit_down;
             }
         }
     }

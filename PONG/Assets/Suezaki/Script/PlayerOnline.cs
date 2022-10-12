@@ -4,14 +4,17 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-namespace test
-{
 
-
-    public class Player : MonoBehaviourPun
+    public class PlayerOnline : MonoBehaviourPun
     {
         public float speed = 3.0f;
-        // Start is called before the first frame update
+        public enum STATUS
+        {
+            limit_up,
+            limit_down,
+            normal
+        }
+        public STATUS status = STATUS.normal;
         void Start()
         {
             
@@ -20,21 +23,23 @@ namespace test
         // Update is called once per frame
         void Update()
         {
-            // ‘Šè‚Ì‘€ìŠ‚ÂÚ‘±’†
-            if(photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+            // ‘Šè‚Ì‘€ì
+            if(photonView.IsMine == false)
             {
                 return;
             }
             // ãˆÚ“®
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.W) && status != STATUS.limit_up)
             {
                 transform.position += transform.up * speed * Time.deltaTime;
+                status = STATUS.normal;
             }
             // ‰ºˆÚ“®
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.S) && status != STATUS.limit_down)
             {
                 transform.position -= transform.up * speed * Time.deltaTime;
+                status = STATUS.normal;
             }
         }
     }
-}
+

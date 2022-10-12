@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Photon.Pun;
 
-public class ShowScore : MonoBehaviour
+public class ShowScore : MonoBehaviourPunCallbacks,IPunObservable
 {
     TextMeshProUGUI scoreText;
     int score = 0;
@@ -19,7 +20,6 @@ public class ShowScore : MonoBehaviour
     {
         
     }
-
     public void ShowScoreText(int num,Data.win end)
     {
         if (end.flg)
@@ -39,5 +39,19 @@ public class ShowScore : MonoBehaviour
         }
         else
             end.flg = false;
+    }
+
+    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(score);
+            stream.SendNext(getscore);
+        }
+        else
+        {
+            score = (int)stream.ReceiveNext();
+            getscore = (string)stream.ReceiveNext();
+        }
     }
 }

@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 479869677806471205}
   - component: {fileID: 479869677806471204}
+  - component: {fileID: 2808719025394821411}
+  - component: {fileID: -1781860245492361181}
   m_Layer: 0
   m_Name: gamescene
-  m_TagString: Untagged
+  m_TagString: scene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,3 +50,39 @@ MonoBehaviour:
   ball: {fileID: 5401996164373971202, guid: 7f6467f30c7f26545964aac519dd04af, type: 3}
   message: {fileID: 5101144449022671185, guid: 626d126402cc2c5478d07c56be0bd155, type: 3}
   EndToChangeTime: 1
+--- !u!114 &2808719025394821411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479869677806471207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &-1781860245492361181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479869677806471207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a700be6e239cf042a4177ec9b9f730f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneChangeKey: 32
+  BallStartKey: 32
