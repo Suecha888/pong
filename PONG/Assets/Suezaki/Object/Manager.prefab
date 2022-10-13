@@ -52,6 +52,8 @@ MonoBehaviour:
   - start
   - game
   - end
+  load: 0
+  leave: 0
 --- !u!114 &8405838433099193459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerNum: 2
-  MaxScore: 70
+  MaxScore: 3
 --- !u!114 &8405838433296252558
 MonoBehaviour:
   m_ObjectHideFlags: 0

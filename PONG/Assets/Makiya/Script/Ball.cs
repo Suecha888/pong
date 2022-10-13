@@ -6,7 +6,10 @@ using Photon.Pun;
 public class Ball : MonoBehaviourPunCallbacks,IPunObservable
 {
     public float speed = 2.0f;
+    [SerializeField]
     bool flg = true;
+    [SerializeField]
+    string client;
     private Rigidbody rb;
     // ボールが当たった物体の法線ベクトル
     private Vector3 objNomalVector = Vector3.zero;
@@ -18,47 +21,63 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
     private int OldScorePlayerId = -1;
     private GameObject message;
 
+    [SerializeField]
     private int dirX = 0;
     private bool setDirFlg = false;
+
+    private bool startball = false;
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
+        if(PhotonNetwork.IsMasterClient)
+        {
+            SetDir();
+            client = new string("Master");
+        }else
+        {
+
+            client = new string("client");
+        }
     }
 
     
     // Update is called once per frame
     void Update()
     {
-        if(!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
-
         if(flg)
         {
-            SetDir();
-            
-            if(Input.GetKeyDown(KeyCode.Space) && (((dirX == -1)&&(PhotonNetwork.IsMasterClient))||((dirX == 1)&&(!PhotonNetwork.IsMasterClient))))
+            if(PhotonNetwork.IsMasterClient && startball)
             {
-                Vector3 dir = new Vector3(dirX, 0, 0).normalized;
-                rb.velocity = speed * dir;
-                // 発射時のvelocityを取得
-                afterReflectVero = rb.velocity;
-                flg = false;
-                setDirFlg = false;
+                StartBall();
+                startball = false;
+            }
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                if(((dirX == -1) && (PhotonNetwork.IsMasterClient)))
+                {
+                    StartBall();
+                }
+                else if(((dirX == 1) && (!PhotonNetwork.IsMasterClient)))
+                {
+                    photonView.RPC(nameof(StartFlg), RpcTarget.All);
+                }
+                
             }
         }
         //if(Input.GetKeyDown(KeyCode.Space) && flg)
         //{
-            
-            
 
-            
+
+
+
         //}
-
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
         // 画面外にボールが出た時
-        if(transform.position.x >= 9 && !flg)
+        if (transform.position.x >= 9 && !flg)
         {
             ScorePlayerId = 0;
         }
@@ -75,6 +94,10 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
     {
         return flg;
     }
+    public int GetBallDir()
+    {
+        return dirX;
+    }
     public void ResetBall()
     {
         rb.velocity = Vector3.zero;
@@ -82,6 +105,7 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
         flg = true;
         OldScorePlayerId = ScorePlayerId;
         ScorePlayerId = -1;
+        SetDir();
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -131,6 +155,7 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
             stream.SendNext(OldScorePlayerId);
             stream.SendNext(flg);
             stream.SendNext(transform.position);
+            stream.SendNext(dirX);
         }
         else
         {
@@ -138,9 +163,12 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
             OldScorePlayerId = (int)stream.ReceiveNext();
             flg = (bool)stream.ReceiveNext();
             transform.position = (Vector3)stream.ReceiveNext();
+            dirX = (int)stream.ReceiveNext();
         }
     }
 
+    // スタート時ボールの射出方向を決める
+    // dirX  1:右　-1:左
     void SetDir()
     {
         if (setDirFlg)
@@ -169,5 +197,20 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
                 }
 
         }
+    }
+    private void StartBall()
+    {
+        Vector3 dir = new Vector3(dirX, 0, 0).normalized;
+        rb.velocity = speed * dir;
+        // 発射時のvelocityを取得
+        afterReflectVero = rb.velocity;
+        flg = false;
+        setDirFlg = false;
+    }
+
+    [PunRPC]
+    private void StartFlg()
+    {
+        startball = true;
     }
 }

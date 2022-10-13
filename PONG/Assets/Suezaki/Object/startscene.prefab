@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 369930165}
   m_Layer: 0
   m_Name: startscene
-  m_TagString: Untagged
+  m_TagString: scene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneChangeKey: 32
+  BallStartKey: 32
 --- !u!114 &369930165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,3 +59,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 761800d4a00ca9c40b980e0239f6358f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Luncher: {fileID: 0}
+  StartAnounce: {fileID: 0}

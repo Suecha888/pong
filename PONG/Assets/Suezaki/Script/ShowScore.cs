@@ -7,7 +7,9 @@ using Photon.Pun;
 public class ShowScore : MonoBehaviourPunCallbacks,IPunObservable
 {
     TextMeshProUGUI scoreText;
+    [SerializeField]
     int score = 0;
+    [SerializeField]
     string getscore;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +20,7 @@ public class ShowScore : MonoBehaviourPunCallbacks,IPunObservable
     // Update is called once per frame
     void Update()
     {
-        
+        scoreText.text = new string(score.ToString());
     }
     public void ShowScoreText(int num,Data.win end)
     {

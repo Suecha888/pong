@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-using Photon.Pun;
-public class GameScene : MonoBehaviourPunCallbacks,IPunObservable
+public class GameScene : MonoBehaviour
 {
     // プレイヤーのスコアオブジェクト
     [SerializeField] GameObject score;
@@ -14,7 +13,9 @@ public class GameScene : MonoBehaviourPunCallbacks,IPunObservable
     [SerializeField] GameObject message;
 
     // 試合情報
+    [SerializeField]
     Data.win battle_data = new Data.win();
+
     // 試合終了から遷移までの時間
     [SerializeField] float EndToChangeTime = 1.0f;
     
@@ -24,8 +25,6 @@ public class GameScene : MonoBehaviourPunCallbacks,IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        
-
         ball = GameObject.FindGameObjectWithTag("Ball");
         score = GameObject.Find("score(Clone)");
         message = GameObject.Find("pressbutton(Clone)");
@@ -38,7 +37,6 @@ public class GameScene : MonoBehaviourPunCallbacks,IPunObservable
         // スコアイベントの登録
         for (int i = 0; i < score.transform.GetChild(0).transform.childCount; ++i)
         DontDestroy.instance.GetComponent<Event>().ScoreEvent[i].AddListener(score.transform.GetChild(0).transform.GetChild(i).GetComponent<ShowScore>().ShowScoreText);
-
         
     }
 
@@ -65,13 +63,30 @@ public class GameScene : MonoBehaviourPunCallbacks,IPunObservable
         }
         else
         {
+
             // press ~~ の表示
             if (ball.GetComponent<Ball>().GetBallMoveFlg())
             {
+                if(ball.GetComponent<Ball>().GetBallDir() == 1)
+                {
+                    message.transform.Find("right").gameObject.SetActive(true);
+                }
+                else
+                {
+                    message.transform.Find("left").gameObject.SetActive(true);
+                }
                 message.SetActive(true);
             }
             else
             {
+                if (ball.GetComponent<Ball>().GetBallDir() == 1)
+                {
+                    message.transform.Find("right").gameObject.SetActive(false);
+                }
+                else
+                {
+                    message.transform.Find("left").gameObject.SetActive(false);
+                }
                 message.SetActive(false);
             }
 
@@ -90,23 +105,7 @@ public class GameScene : MonoBehaviourPunCallbacks,IPunObservable
         
         
     }
-    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if(stream.IsWriting)
-        {
-            stream.SendNext(score);
-            stream.SendNext(ball);
-            stream.SendNext(message);
-            stream.SendNext(battle_data);
-        }
-        else
-        {
-            score = (GameObject)stream.ReceiveNext();
-            ball = (GameObject)stream.ReceiveNext();
-            message = (GameObject)stream.ReceiveNext();
-            battle_data = (Data.win)stream.ReceiveNext();
-        }
-    }
+    
 
     
 }
