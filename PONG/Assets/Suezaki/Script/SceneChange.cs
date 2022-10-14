@@ -8,12 +8,16 @@ using Photon.Realtime;
 
 public class SceneChange : MonoBehaviourPunCallbacks
 {
+    // シーンのリスト
     [SerializeField]
     List<string> scenes = new List<string>();
-
+    // シーンのインデックス
     int index = 0;
+    // シーンの最大数
     int max = 0;
+    // シーンが読み込まれたフラグ
     public bool load = false;
+    // シーン戻るフラグ
     public bool leave = false;
     // Start is called before the first frame update
     void Start()
@@ -26,30 +30,29 @@ public class SceneChange : MonoBehaviourPunCallbacks
     {
         
     }
-
+    // シーン切替
     public void ChangeScene()
     {
+        // マスタークライアント以外はスルー
         if(!PhotonNetwork.IsMasterClient)
         {
             Debug.Log("PhotonNetwork: Trying to Load a level but we are not the master client");
             return;
         }
+
+        // 次のシーンに切替
         index++;
         Debug.LogFormat("PhotonNetwork: Load scene {0}", scenes[index % max]);
         PhotonNetwork.LoadLevel(scenes[index % max]);
-        //SceneManager.LoadScene(scenes[++index % max]);
     }
-
+    // ルーム退出
     public  void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
     }
 
-    public override void OnLeftRoom()
-    {
-        PhotonNetwork.LoadLevel(scenes[index % max]);
-        base.OnLeftRoom();
-    }
+    
+    // シーンをひとつ前にもどす
     public void UpdateLeave()
     {
         if(!leave)
@@ -58,16 +61,19 @@ public class SceneChange : MonoBehaviourPunCallbacks
             leave = true;
         }
     }
+    // シーンのインデックスをセット
     public void setIndex(int n)
     {
         index = n;
     }
+    // シーンのインデックスを取得
     public int getIndex()
     {
         return index % max;
     }
     #region Photon Callbacks
 
+    // リモートプレイヤーがルームに入ったときに呼び出されます。このプレイヤーはすでにプレイヤーリストに追加されています
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player other)
     {
         Debug.LogFormat("OnPlayerEnteredRoom(){0}", other.NickName);
@@ -78,6 +84,14 @@ public class SceneChange : MonoBehaviourPunCallbacks
         }
     }
 
+    // ローカルユーザー/クライアントがルームを出たときに呼び出され、ゲームのロジックが内部状態をクリーンアップできるようにします
+    public override void OnLeftRoom()
+    {
+        PhotonNetwork.LoadLevel(scenes[index % max]);
+        base.OnLeftRoom();
+    }
+
+    // リモートプレイヤーがルームを離れるか、非アクティブになったときに呼び出されます。
     public override void OnPlayerLeftRoom(Photon.Realtime.Player other)
     {
         Debug.LogFormat("OnPlayerLeftRoom() {0}", other.NickName); 

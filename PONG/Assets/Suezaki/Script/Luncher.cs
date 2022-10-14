@@ -17,8 +17,12 @@ public class Luncher : MonoBehaviourPunCallbacks
     private bool switchFlg = false;
     private void Awake()
     {
+        // MasterClient以外のClientがシーンの切り替えを、MasterClientのシーンの切り替えに同期
         PhotonNetwork.AutomaticallySyncScene = true;
+        // PhotonNetworkがパケットを、1秒に何度送信するか
         PhotonNetwork.SendRate = 120;
+        // OnPhotonSerializeがPhotonViewに、1秒何度呼ばれるか
+        // PhotonNetwork.sendRateと関連させて、この値を決めてください。
         PhotonNetwork.SerializationRate = 120;
     }
     // Start is called before the first frame update
@@ -33,6 +37,7 @@ public class Luncher : MonoBehaviourPunCallbacks
         
     }
 
+    // マスターサーバーに接続してルームに入る
     public void Connect()
     {
         // 接続していたらランダムなルームに参加
@@ -50,6 +55,7 @@ public class Luncher : MonoBehaviourPunCallbacks
 
     #region MonoBehaviourPunCallbacks Callbacks
 
+    // クライアントがMaster Serverに接続されていて、マッチメイキングやその他のタスクを行う準備が整ったときに呼び出されます。
     public override void OnConnectedToMaster()
     {
         if(isConnecting)
@@ -59,18 +65,18 @@ public class Luncher : MonoBehaviourPunCallbacks
         }
         Debug.Log("suezaki/Luncher: OnConnectedToMaster() was called by PUN");
     }
-
+    // Photonサーバーから切断した後に呼び出されます。
     public override void OnDisconnected(DisconnectCause cause)
     {
         Debug.LogWarningFormat("suezaki/Luncher: OnDisconnected() was called by PUN with reason {0}",cause);
     }
-
+    // 前回のOpJoinRandom呼び出しがサーバーで失敗したときに呼び出されます。
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log("suezaki/Luncher: OnJoinRandomFailed() was called by PUN No random room available, so we create one.\nCalling: PhotonNetwork.CreateRoom");
         PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
     }
-
+    // このクライアントがルームを作成したか参加したかに関係なく、LoadBalancingClientがルームに入ったときに呼び出されます。
     public override void OnJoinedRoom()
     {
         Debug.Log("suezaki/Luncher: OnJoinedRoom() called by PUN. Now this client is in a room.");

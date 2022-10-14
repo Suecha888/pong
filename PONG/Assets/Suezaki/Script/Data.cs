@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Data : MonoBehaviour
 {
+    // ŸÒƒf[ƒ^
     public class win
     {
         public bool flg;

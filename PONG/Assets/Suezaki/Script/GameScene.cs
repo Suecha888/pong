@@ -46,7 +46,6 @@ public class GameScene : MonoBehaviour
 
         if(Input.GetKey(KeyCode.C))
         {
-            //if(PhotonNetwork.IsMasterClient)
             DontDestroy.instance.GetComponent<SceneChange>().UpdateLeave();
             DontDestroy.instance.GetComponent<SceneChange>().LeaveRoom();
         }

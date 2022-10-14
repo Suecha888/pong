@@ -4,26 +4,20 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
+    // シーン切替のキー
     [SerializeField]
     KeyCode SceneChangeKey = KeyCode.Space;
+    // ボールスタートのキー
     [SerializeField]
     KeyCode BallStartKey = KeyCode.Space;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+    // シーン切替のキー取得
     public KeyCode GetSceneChangeKey()
     {
         return SceneChangeKey;
     }
-
+    // ボールスタートのキー取得
     public KeyCode GetBallStartKey()
     {
         return BallStartKey;

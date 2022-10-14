@@ -6,8 +6,10 @@ using Photon.Realtime;
 
 public class Setting : MonoBehaviour
 {
+    // プレイヤーの数
     [SerializeField]
     int PlayerNum = 2;
+    // 最大スコア
     [SerializeField]
     int MaxScore = 15;
     // Start is called before the first frame update
@@ -17,16 +19,13 @@ public class Setting : MonoBehaviour
         PhotonNetwork.SerializationRate = 10; // 1秒間にオブジェクト同期を行う回数
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // プレイヤーの数取得
     public int GetPlayerNum()
     {
         return PlayerNum;
     }
 
+    // 最大スコア取得
     public int GetMaxScore()
     {
         return MaxScore;

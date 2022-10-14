@@ -16,7 +16,7 @@ public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroy.instance.GetComponent<SceneChange>().load = true;
+        DontDestroy.instance.GetComponent<SceneChange>().load = false;
         DontDestroy.instance.GetComponent<Event>().WinnerEvent.AddListener(winner.GetComponent<ShowWinner>().showWinner);
         // èüé“ÇÃï\é¶
         if (PhotonNetwork.IsMasterClient)
@@ -56,9 +56,9 @@ public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
             StartAnounce.transform.Find("press_button").gameObject.SetActive(true);
             StartAnounce.transform.Find("client").gameObject.SetActive(false);
 
-            if (Input.GetKey(SceneChangeKey) && DontDestroy.instance.GetComponent<SceneChange>().load)
+            if (Input.GetKey(SceneChangeKey) && !DontDestroy.instance.GetComponent<SceneChange>().load)
             {
-                DontDestroy.instance.GetComponent<SceneChange>().load = false;
+                DontDestroy.instance.GetComponent<SceneChange>().load = true;
                 DontDestroy.instance.GetComponent<SceneChange>().ChangeScene();
             }
         }

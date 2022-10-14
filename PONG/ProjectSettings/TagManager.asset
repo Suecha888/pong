@@ -3,15 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Ball
-  - Wall
-<<<<<<< HEAD
-  - scene
-=======
-  - Text
-  - Player2
->>>>>>> ea8c3353fd4c044073353c3a58b3331048fa743a
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -19,11 +11,11 @@ TagManager:
   - 
   - Water
   - UI
-  - wall
-  - player
-  - ball
-  - player_limit
-  - object
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
