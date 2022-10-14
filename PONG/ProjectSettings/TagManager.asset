@@ -6,7 +6,12 @@ TagManager:
   tags:
   - Ball
   - Wall
+<<<<<<< HEAD
   - scene
+=======
+  - Text
+  - Player2
+>>>>>>> ea8c3353fd4c044073353c3a58b3331048fa743a
   layers:
   - Default
   - TransparentFX

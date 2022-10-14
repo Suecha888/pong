@@ -109,7 +109,7 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
         {
             // 側面に当たったら消える
             if (collision.contacts[0].normal.x == 0)
@@ -134,6 +134,7 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
             rb.velocity = afterReflectVero.magnitude * returnVec;
             // 計算した反射ベクトルを保存
             afterReflectVero = rb.velocity;
+            Debug.Log(rb.velocity);
         }
 
         if (collision.gameObject.tag == "Wall")
