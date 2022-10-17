@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 7099840425348258329}
   - component: {fileID: 7913682968934839862}
   - component: {fileID: 804405217885308582}
-  - component: {fileID: 2031178628978341899}
+  - component: {fileID: 6822656038426839642}
   m_Layer: 5
   m_Name: RoomListViewElement
   m_TagString: Untagged
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2031178628978341899
+--- !u!114 &6822656038426839642
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

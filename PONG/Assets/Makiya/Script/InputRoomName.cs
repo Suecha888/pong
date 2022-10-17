@@ -21,7 +21,7 @@ public class InputRoomName : MonoBehaviourPunCallbacks
     {
         // ルーム名を設定
         RoomName = inputname.text;
-        Debug.Log("ルーム名：" + RoomName);
+        //Debug.Log("ルーム名：" + RoomName);
 
         // Joinボタンの表示
         JoinButton.SetActive(true);
@@ -50,7 +50,7 @@ public class InputRoomName : MonoBehaviourPunCallbacks
     // ゲームサーバーへの接続が成功した時に呼ばれるコールバック
     public override void OnJoinedRoom()
     {
-        Debug.Log("ゲームサーバーに接続成功");
+        //Debug.Log("ゲームサーバーに接続成功");
         // シーン切り替え
         //SceneManager.LoadScene("SampleScene");
     }

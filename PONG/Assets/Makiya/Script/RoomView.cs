@@ -21,7 +21,7 @@ public class RoomView : MonoBehaviourPunCallbacks
         scrollRect = GetComponent<ScrollRect>();
 
         // ルームリスト要素（ルーム参加ボタン）を生成して初期化する
-        for(int i = 0; i < MaxFlements; i++)
+        for (int i = 0; i < MaxFlements; i++)
         {
             var element = Instantiate(elementPrefab, scrollRect.content);
             element.Init(parentView);
@@ -30,22 +30,42 @@ public class RoomView : MonoBehaviourPunCallbacks
         }
     }
 
+    public override void OnJoinedLobby()
+    {
+        roomList.Clear();
+    }
+
+    public override void OnLeftLobby()
+    {
+        roomList.Clear();
+    }
+
+    public override void OnJoinedRoom()
+    {
+        roomList.Clear();
+    }
+
     // マスターサーバーのロビーにいる間にルームリストを更新するために呼ばれる
     public override void OnRoomListUpdate(List<RoomInfo> changedRoomList)
     {
+        //Debug.Log("OnRoomListUpdateが呼ばれた");
         roomList.Update(changedRoomList);
 
         // 存在するルームの数だけルームリスト要素を表示する
         int index = 0;
-        foreach(var roomInfo in roomList)
+        foreach (var roomInfo in roomList)
         {
             elementList[index++].Show(roomInfo);
         }
-
+        foreach (var roomInfo in roomList)
+        {
+            //Debug.Log("RoomInfo情報：" + roomInfo);
+        }
         // 残りのルームリスト要素を非表示にする
-        for(int i = index; i < MaxFlements; i++)
+        for (int i = index; i < MaxFlements; i++)
         {
             elementList[i].Hide();
         }
     }
+
 }

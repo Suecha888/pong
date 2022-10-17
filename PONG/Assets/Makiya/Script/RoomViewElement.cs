@@ -14,6 +14,7 @@ public class RoomViewElement : MonoBehaviour
     private MatchmakingView matchmakingView;
     private Button button;
 
+    //public void Init(MatchmakingView parentView)
     public void Init(MatchmakingView parentView)
     {
         matchmakingView = parentView;

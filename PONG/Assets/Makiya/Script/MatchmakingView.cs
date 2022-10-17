@@ -14,7 +14,6 @@ public class MatchmakingView : MonoBehaviourPunCallbacks
     private Button createRoomButton = default;
 
     private CanvasGroup canvasGroup;
-
     public GameObject GameServerPanel;
 
     private void Start()
@@ -75,8 +74,12 @@ public class MatchmakingView : MonoBehaviourPunCallbacks
     {
         // ルームへの参加が成功したら、UIを非表示にする
         gameObject.SetActive(false);
-        Debug.Log("ゲームサーバーに接続成功");
+        //Debug.Log("ゲームサーバーに接続成功");
         GameServerPanel.SetActive(true);
+
+        // 自身のアバター（ネットワークオブジェクト）を生成する
+        var position = new Vector3(0, 0);
+        PhotonNetwork.Instantiate("Avatar", position, Quaternion.identity);
     }
 
     // ゲームサーバーに接続が失敗した時に呼ばれるコールバック

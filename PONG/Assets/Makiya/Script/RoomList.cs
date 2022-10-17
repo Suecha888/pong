@@ -1,24 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Realtime;
+using UnityEngine;
 
-// IEnumerable<RoomInfo>インターフェースを実装して、foreachでルーム情報を列挙出来るようにする
 public class RoomList : IEnumerable<RoomInfo>
 {
     private Dictionary<string, RoomInfo> dictionary = new Dictionary<string, RoomInfo>();
 
     public void Update(List<RoomInfo> changeRoomList)
     {
-        foreach(var info in changeRoomList)
+        foreach (var info in changeRoomList)
         {
-            if(!info.RemovedFromList)
+            //Debug.Log("削除されたか" + info.RemovedFromList);
+            //if(info.PlayerCount <= 0)
+            if (info.RemovedFromList)   // ロビーで使用され、リストに表示されなくなったルーム（満室、終了、非表示）
             {
-                dictionary[info.Name] = info;
+                //Debug.Log("ルームを消す：" + info.Name);
+                dictionary.Remove(info.Name);
             }
             else
             {
-                dictionary.Remove(info.Name);
+                //Debug.Log("ルームを追加：" + info.Name);
+                dictionary[info.Name] = info;
             }
+            //Debug.Log("info情報：" + info);
         }
     }
 

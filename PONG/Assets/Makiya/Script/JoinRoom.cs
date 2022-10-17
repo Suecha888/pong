@@ -16,21 +16,9 @@ public class JoinRoom : MonoBehaviourPunCallbacks
     // マスターサーバーへの接続が成功した時に呼ばれるコールバック
     public override void OnConnectedToMaster()
     {
-        Debug.Log("マスターサーバーに接続成功");
+        //Debug.Log("マスターサーバーに接続成功");
         // パネルの表示/非表示
         InputNamePanel.SetActive(false);
         RoomPanel.SetActive(true);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

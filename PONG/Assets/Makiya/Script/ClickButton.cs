@@ -10,6 +10,14 @@ public class ClickButton : MonoBehaviourPunCallbacks
     public GameObject CreateRoomPanel;
     public GameObject MatchmakingView;
 
+    //private RoomList roomList = new RoomList();     // 作成したルームのリスト
+
+    public void Start()
+    {
+        // ロビーに参加
+        PhotonNetwork.JoinLobby();
+    }
+
     public void CreateRoomClicked()
     {
         RoomPanel.SetActive(false);
@@ -21,26 +29,11 @@ public class ClickButton : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRandomRoom();
     }
 
-    // ランダムでルームに参加出来なかった時
-    public override void OnJoinRandomFailed(short returnCode, string message)
-    {
-        RoomPanel.SetActive(false);
-        MatchmakingView.SetActive(true);
-
-        Debug.Log("ランダム参加失敗");
-    }
-
-    // ルームを退出した時に呼ばれるコールバック
-    public override void OnLeftRoom()
-    {
-        Debug.Log("マスターサーバーに接続成功");
-    }
-
     public void ShowRoomListClicked()
     {
         RoomPanel.SetActive(false);
         MatchmakingView.SetActive(true);
-        // ロビーに参加する
+        // ロビーに参加
         PhotonNetwork.JoinLobby();
     }
 
@@ -51,16 +44,42 @@ public class ClickButton : MonoBehaviourPunCallbacks
         MatchmakingView.SetActive(false);
     }
 
-    //public void JoinOnCreateRoomClicked()
-    //{
-    //    // "Room"という名前のルームに参加する。（ルームが存在しなければ作成して参加する）
-    //    PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions(), TypedLobby.Default);
-    //}
+    // ランダムでルームに参加出来なかった時
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        RoomPanel.SetActive(false);
+        MatchmakingView.SetActive(true);
+        // ロビーに参加
+        PhotonNetwork.JoinLobby();
+    }
 
-    //public void CreateRoomClicked2()
-    //{
-    //    // "Room"という名前のルームを作成する
-    //    PhotonNetwork.CreateRoom("Room", new RoomOptions(), TypedLobby.Default);
-    //}
+    // マスターサーバーへの接続が成功した時に呼ばれるコールバック
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("マスターサーバーに接続成功");
+        // ロビーに参加
+        PhotonNetwork.JoinLobby();
+    }
 
+    // ルームから退出した時に呼ばれるコールバック
+    public override void OnLeftRoom()
+    {
+        Debug.Log("ルームを退出");
+    }
+
+    // マスターサーバーのロビーに入る時に呼ばれるコールバック
+    public override void OnJoinedLobby()
+    {
+        Debug.Log("ロビーに接続成功");
+    }
+
+    // マスターサーバーのロビーにいる間にルームリストを更新するために呼ばれる
+    //public override void OnRoomListUpdate(List<RoomInfo> changedRoomList)
+    //{
+    //    roomList.Update(changedRoomList);
+    //    foreach (var roomInfo in roomList)
+    //    {
+    //        Debug.Log("RoomInfo情報：" + roomInfo);
+    //    }
+    //}
 }
