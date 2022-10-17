@@ -25,17 +25,7 @@ public class Luncher : MonoBehaviourPunCallbacks
         // PhotonNetwork.sendRateと関連させて、この値を決めてください。
         PhotonNetwork.SerializationRate = 120;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Connect();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 
     // マスターサーバーに接続してルームに入る
     public void Connect()
