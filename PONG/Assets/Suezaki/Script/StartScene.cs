@@ -15,6 +15,8 @@ public class StartScene : MonoBehaviour
     private GameObject StartAnounce;
     // 接続したかどうか
     bool connect = false;
+    // 人数がそろったかどうか
+    bool ready = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,8 +32,17 @@ public class StartScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(PhotonNetwork.PlayerList.Length == 2)
+        {
+            ready = true;
+        }
+        else
+        {
+            ready = false;
+        }
+
         // マスタークライアントがキーを押してシーン切替
-        if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient && ready)
         {
             if (Input.GetKey(SceneChangeKey) && !DontDestroy.instance.GetComponent<SceneChange>().load)
             {
@@ -45,15 +56,14 @@ public class StartScene : MonoBehaviour
         {
             //StartAnounce.transform.Find("conect").gameObject.SetActive(false);
             // マスタークライアントはシーン切替ボタンの表示
-            if (PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient && ready)
             {
-                Debug.Log("マスター！");
                 StartAnounce.transform.Find("press_button").gameObject.SetActive(true);
                 StartAnounce.transform.Find("client").gameObject.SetActive(false);
 
             }
             // クライアントはマスタークライアントを待つ表示
-            else
+            else 
             {
                 StartAnounce.transform.Find("press_button").gameObject.SetActive(false);
                 StartAnounce.transform.Find("client").gameObject.SetActive(true);
