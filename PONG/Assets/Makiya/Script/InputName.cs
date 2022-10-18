@@ -8,17 +8,18 @@ using Photon.Pun;
 public class InputName : MonoBehaviourPunCallbacks
 {
     public TMP_Text tmpName;
+    public TMP_Text Inputname;
     public GameObject JoinButton;
 
     // プレイヤーの名前設定
     public void SetName()
     {
-        TMP_Text text = GameObject.FindWithTag("Text").GetComponent<TMP_Text>();
+        //TMP_Text text = GameObject.FindWithTag("Text").GetComponent<TMP_Text>();
 
         // 名前を表示する
-        tmpName.text = text.text.ToString();
+        tmpName.text = Inputname.text.ToString();
         // 名前を設定
-        PhotonNetwork.NickName = text.text;
+        PhotonNetwork.NickName = Inputname.text;
         //Debug.Log(PhotonNetwork.NickName);
 
         // InputFieldの文字を消去

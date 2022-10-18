@@ -49,17 +49,16 @@ public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
             oldname = winnername;
             winner.SetActive(true);
         }
-        
-        
+
         if (PhotonNetwork.IsMasterClient)
         {
             StartAnounce.transform.Find("press_button").gameObject.SetActive(true);
             StartAnounce.transform.Find("client").gameObject.SetActive(false);
-
             if (Input.GetKey(SceneChangeKey) && !DontDestroy.instance.GetComponent<SceneChange>().load)
             {
                 DontDestroy.instance.GetComponent<SceneChange>().load = true;
                 DontDestroy.instance.GetComponent<SceneChange>().ChangeScene();
+                DontDestroy.instance.GetComponent<SceneChange>().LeaveRoom();
             }
         }
         else
@@ -67,8 +66,7 @@ public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
             StartAnounce.transform.Find("press_button").gameObject.SetActive(false);
             StartAnounce.transform.Find("client").gameObject.SetActive(true);
         }
-        
-        
+
     }
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {

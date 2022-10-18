@@ -7,10 +7,10 @@ using UnityEngine;
 public class ClickButton : MonoBehaviourPunCallbacks
 {
     public GameObject RoomPanel;
-    public GameObject CreateRoomPanel;
+    //public GameObject CreateRoomPanel;
     public GameObject MatchmakingView;
-
-    //private RoomList roomList = new RoomList();     // 作成したルームのリスト
+    [SerializeField]
+    private GameObject Luncher;
 
     public void Start()
     {
@@ -21,12 +21,12 @@ public class ClickButton : MonoBehaviourPunCallbacks
     public void CreateRoomClicked()
     {
         RoomPanel.SetActive(false);
-        CreateRoomPanel.SetActive(true);
+        //CreateRoomPanel.SetActive(true);
     }
 
     public void JoinRandomRoomClicked()
     {
-        PhotonNetwork.JoinRandomRoom();
+        //PhotonNetwork.JoinRandomRoom();
     }
 
     public void ShowRoomListClicked()
@@ -40,7 +40,7 @@ public class ClickButton : MonoBehaviourPunCallbacks
     public void BackClicked()
     {
         RoomPanel.SetActive(true);
-        CreateRoomPanel.SetActive(false);
+        //CreateRoomPanel.SetActive(false);
         MatchmakingView.SetActive(false);
     }
 
@@ -72,14 +72,4 @@ public class ClickButton : MonoBehaviourPunCallbacks
     {
         Debug.Log("ロビーに接続成功");
     }
-
-    // マスターサーバーのロビーにいる間にルームリストを更新するために呼ばれる
-    //public override void OnRoomListUpdate(List<RoomInfo> changedRoomList)
-    //{
-    //    roomList.Update(changedRoomList);
-    //    foreach (var roomInfo in roomList)
-    //    {
-    //        Debug.Log("RoomInfo情報：" + roomInfo);
-    //    }
-    //}
 }

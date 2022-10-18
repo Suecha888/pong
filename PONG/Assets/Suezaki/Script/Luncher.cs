@@ -31,16 +31,16 @@ public class Luncher : MonoBehaviourPunCallbacks
     public void Connect()
     {
         // 接続していたらランダムなルームに参加
-        if(PhotonNetwork.IsConnected)
-        {
-            PhotonNetwork.JoinRandomRoom();
-        }
-        else
-        {
-            PhotonNetwork.GameVersion = gameVersion;
-            // PhotonServerSettingsの設定内容を使ってマスターサーバーへ接続する
-            isConnecting = PhotonNetwork.ConnectUsingSettings();
-        }
+        //if(PhotonNetwork.IsConnected)
+        //{
+        //    PhotonNetwork.JoinRandomRoom();
+        //}
+        //else
+        //{
+        //    PhotonNetwork.GameVersion = gameVersion;
+        //    // PhotonServerSettingsの設定内容を使ってマスターサーバーへ接続する
+        //    isConnecting = PhotonNetwork.ConnectUsingSettings();
+        //}
     }
 
     #region MonoBehaviourPunCallbacks Callbacks
@@ -48,12 +48,12 @@ public class Luncher : MonoBehaviourPunCallbacks
     // クライアントがMaster Serverに接続されていて、マッチメイキングやその他のタスクを行う準備が整ったときに呼び出されます。
     public override void OnConnectedToMaster()
     {
-        if(isConnecting)
-        {
-            PhotonNetwork.JoinRandomRoom();
-            isConnecting = false;
-        }
-        Debug.Log("suezaki/Luncher: OnConnectedToMaster() was called by PUN");
+        //if(isConnecting)
+        //{
+        //    PhotonNetwork.JoinRandomRoom();
+        //    isConnecting = false;
+        //}
+        //Debug.Log("suezaki/Luncher: OnConnectedToMaster() was called by PUN");
     }
     // Photonサーバーから切断した後に呼び出されます。
     public override void OnDisconnected(DisconnectCause cause)

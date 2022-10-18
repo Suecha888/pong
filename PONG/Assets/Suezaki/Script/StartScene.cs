@@ -19,7 +19,7 @@ public class StartScene : MonoBehaviour
     void Start()
     {
         // 接続待機の表示
-        StartAnounce.transform.Find("conect").gameObject.SetActive(true);
+        //StartAnounce.transform.Find("conect").gameObject.SetActive(true);
         
         // シーンチェンジのキーを取得
         SceneChangeKey = GetComponent<Key>().GetSceneChangeKey();
@@ -43,10 +43,11 @@ public class StartScene : MonoBehaviour
         // 接続したら表示を切り替える
         if (connect)
         {
-            StartAnounce.transform.Find("conect").gameObject.SetActive(false);
+            //StartAnounce.transform.Find("conect").gameObject.SetActive(false);
             // マスタークライアントはシーン切替ボタンの表示
             if (PhotonNetwork.IsMasterClient)
             {
+                Debug.Log("マスター！");
                 StartAnounce.transform.Find("press_button").gameObject.SetActive(true);
                 StartAnounce.transform.Find("client").gameObject.SetActive(false);
 
@@ -61,15 +62,18 @@ public class StartScene : MonoBehaviour
         }
 
         // サーバーに接続
-        if (Input.GetKey(KeyCode.C))
-        {
-            this.Luncher.GetComponent<Luncher>().Connect();
-            connect = true;
-        }
+        //if (Input.GetKey(KeyCode.C))
+        //{
+        //    this.Luncher.GetComponent<Luncher>().Connect();
+        //    connect = true;
+        //}
 
         
     }
     
-
+    public void Setconnect()
+    {
+        connect = true;
+    }
     
 }

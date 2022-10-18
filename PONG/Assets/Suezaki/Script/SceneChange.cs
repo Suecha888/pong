@@ -94,14 +94,14 @@ public class SceneChange : MonoBehaviourPunCallbacks
     // リモートプレイヤーがルームを離れるか、非アクティブになったときに呼び出されます。
     public override void OnPlayerLeftRoom(Photon.Realtime.Player other)
     {
-        Debug.LogFormat("OnPlayerLeftRoom() {0}", other.NickName); 
-
+        DontDestroy.instance.GetComponent<SceneChange>().UpdateLeave();
+        DontDestroy.instance.GetComponent<SceneChange>().LeaveRoom();
+        Debug.LogFormat("OnPlayerLeftRoom() {0}", other.NickName);
 
         if (PhotonNetwork.IsMasterClient)
         {
             Debug.LogFormat("OnPlayerLeftRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient);
 
-            
         }
     }
     #endregion

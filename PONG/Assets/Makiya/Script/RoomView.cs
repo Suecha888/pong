@@ -57,10 +57,6 @@ public class RoomView : MonoBehaviourPunCallbacks
         {
             elementList[index++].Show(roomInfo);
         }
-        foreach (var roomInfo in roomList)
-        {
-            //Debug.Log("RoomInfo情報：" + roomInfo);
-        }
         // 残りのルームリスト要素を非表示にする
         for (int i = index; i < MaxFlements; i++)
         {

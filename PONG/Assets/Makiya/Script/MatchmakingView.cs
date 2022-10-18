@@ -12,9 +12,11 @@ public class MatchmakingView : MonoBehaviourPunCallbacks
     private TMP_InputField roomNameInputField = default;
     [SerializeField]
     private Button createRoomButton = default;
+    [SerializeField]
+    private GameObject StartScene;
 
+    public GameObject text;
     private CanvasGroup canvasGroup;
-    public GameObject GameServerPanel;
 
     private void Start()
     {
@@ -72,14 +74,18 @@ public class MatchmakingView : MonoBehaviourPunCallbacks
     // ゲームサーバーへの接続が成功した時に呼ばれるコールバック
     public override void OnJoinedRoom()
     {
-        // ルームへの参加が成功したら、UIを非表示にする
-        gameObject.SetActive(false);
-        //Debug.Log("ゲームサーバーに接続成功");
-        GameServerPanel.SetActive(true);
+        //if (PhotonNetwork.IsMasterClient)
+        //{
+        //    // テキストを表示
+        //    text.SetActive(true);
+        //}
 
-        // 自身のアバター（ネットワークオブジェクト）を生成する
-        var position = new Vector3(0, 0);
-        PhotonNetwork.Instantiate("Avatar", position, Quaternion.identity);
+        this.StartScene.GetComponent<StartScene>().Setconnect();
+
+        // ルームへの参加が成功したら、UIを非表示にする
+        //gameObject.SetActive(false);
+        //Debug.Log("ゲームサーバーに接続成功");
+
     }
 
     // ゲームサーバーに接続が失敗した時に呼ばれるコールバック

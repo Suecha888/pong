@@ -10,11 +10,6 @@ public class BackRoom : MonoBehaviourPunCallbacks
     public GameObject GameServerPanel;
     private RoomList roomList = new RoomList();     // 作成したルームのリスト
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     public void BackButtonClicksd()
     {
         // ルームから退出しマスターサーバーに戻る
@@ -24,8 +19,4 @@ public class BackRoom : MonoBehaviourPunCallbacks
         RoomPanel.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
 }
