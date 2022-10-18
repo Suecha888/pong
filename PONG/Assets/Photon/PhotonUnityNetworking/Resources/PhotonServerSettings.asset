@@ -43,6 +43,8 @@ MonoBehaviour:
   - BallStart
   - StartFlg
   - setName
+  - SetMatchPointAdd
+  - SetMatchPointMinus
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

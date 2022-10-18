@@ -43,4 +43,6 @@ public class Setting : MonoBehaviour
             MaxScore += 100;
         }
     }
+
+
 }

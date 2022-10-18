@@ -2145,7 +2145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoomPanel: {fileID: 689684121}
   MatchmakingView: {fileID: 494812911}
-  Luncher: {fileID: 106440084}
 --- !u!1 &699215244
 GameObject:
   m_ObjectHideFlags: 0
@@ -3482,6 +3481,7 @@ GameObject:
   - component: {fileID: 1310567521}
   - component: {fileID: 1310567520}
   - component: {fileID: 1310567519}
+  - component: {fileID: 1310567522}
   m_Layer: 5
   m_Name: matchpoint
   m_TagString: Untagged
@@ -3618,6 +3618,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310567517}
   m_CullTransparentMesh: 1
+--- !u!114 &1310567522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310567517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 2
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1391629528
 GameObject:
   m_ObjectHideFlags: 0
