@@ -83,7 +83,8 @@ public class MatchmakingView : MonoBehaviourPunCallbacks
         this.StartScene.GetComponent<StartScene>().Setconnect();
 
         // ルームへの参加が成功したら、UIを非表示にする
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
+        
         //Debug.Log("ゲームサーバーに接続成功");
 
     }

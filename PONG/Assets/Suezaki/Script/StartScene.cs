@@ -17,6 +17,8 @@ public class StartScene : MonoBehaviour
     bool connect = false;
     // 人数がそろったかどうか
     bool ready = false;
+    // setting テキストの表示
+    bool settingtext = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +56,11 @@ public class StartScene : MonoBehaviour
         // 接続したら表示を切り替える
         if (connect)
         {
+            if(!settingtext)
+            {
+                StartAnounce.transform.Find("setting").gameObject.SetActive(true);
+                settingtext = true;
+            }
             //StartAnounce.transform.Find("conect").gameObject.SetActive(false);
             // マスタークライアントはシーン切替ボタンの表示
             if (PhotonNetwork.IsMasterClient && ready)

@@ -30,4 +30,17 @@ public class Setting : MonoBehaviour
     {
         return MaxScore;
     }
+    // 最大スコアセット
+    public void AddMaxScore()
+    {
+        MaxScore = (MaxScore % 100) + 1;
+    }
+    public void MinusMaxScore()
+    {
+        MaxScore--;
+        if(MaxScore <= 0)
+        {
+            MaxScore += 100;
+        }
+    }
 }
