@@ -5,14 +5,14 @@ using Photon.Pun;
 
 public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
 {
-    // �V�[����؂�ւ���L�[
+    // シーンを切り替えるキー
     private KeyCode SceneChangeKey;
-    // ���ҕ\���I�u�W�F�N�g
+    // 勝者表示オブジェクト
     [SerializeField] GameObject winner;
-    // �{�^���ē��\��
+    // ボタン案内表示
     [SerializeField]
     private GameObject StartAnounce;
-    // ���Җ�
+    // 勝者名
     [SerializeField]
     string winnername ="";
     string oldname = "";
@@ -22,7 +22,7 @@ public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
     {
         DontDestroy.instance.GetComponent<SceneChange>().load = false;
         DontDestroy.instance.GetComponent<Event>().WinnerEvent.AddListener(winner.GetComponent<ShowWinner>().showWinner);
-        // ���҂̕\��
+        // 勝者の表示
         if (PhotonNetwork.IsMasterClient)
         {
             DontDestroy.instance.GetComponent<Event>().WinnerEvent.Invoke(DontDestroy.instance.GetComponent<Data>().winner.name);
@@ -44,7 +44,7 @@ public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
             winnername = DontDestroy.instance.GetComponent<Data>().winner.name;
         }
 
-        // ���O�\��
+        // 名前表示
         if (winnername != oldname)
         {
             DontDestroy.instance.GetComponent<Event>().WinnerEvent.Invoke(winnername);
@@ -56,7 +56,7 @@ public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
         {
             StartAnounce.transform.Find("press_button").gameObject.SetActive(true);
             StartAnounce.transform.Find("client").gameObject.SetActive(false);
-            // �}�X�^�[�N���C�A���g�̂݃V�[���J�ډ\
+            // マスタークライアントのみシーン遷移可能
             if (Input.GetKey(SceneChangeKey) && !DontDestroy.instance.GetComponent<SceneChange>().load)
             {
                 DontDestroy.instance.GetComponent<SceneChange>().load = true;
