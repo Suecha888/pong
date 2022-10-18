@@ -5061,14 +5061,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: conect
       objectReference: {fileID: 0}
-    - target: {fileID: 2466704253331367026, guid: d7009ca95e56dcc45a77c885f8667e25, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4379269926119918006, guid: d7009ca95e56dcc45a77c885f8667e25, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5945226553150549410, guid: d7009ca95e56dcc45a77c885f8667e25, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5167,22 +5159,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1521290545}
     m_Modifications:
-    - target: {fileID: 4881662309873388328, guid: 8e470406fab36274083c0e515eb49b0d, type: 3}
-      propertyPath: sceneObject
-      value: 
-      objectReference: {fileID: 369930164}
-    - target: {fileID: 4881662309873388330, guid: 8e470406fab36274083c0e515eb49b0d, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4881662309873388330, guid: 8e470406fab36274083c0e515eb49b0d, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 3d763c07b63f1254f9579f098a50a5dc, type: 2}
-    - target: {fileID: 4881662309873388330, guid: 8e470406fab36274083c0e515eb49b0d, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 7892303464708042159, guid: 3d763c07b63f1254f9579f098a50a5dc, type: 2}
     - target: {fileID: 4881662309873388331, guid: 8e470406fab36274083c0e515eb49b0d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5270,10 +5246,6 @@ PrefabInstance:
     - target: {fileID: 4881662309873388332, guid: 8e470406fab36274083c0e515eb49b0d, type: 3}
       propertyPath: m_Name
       value: press_button
-      objectReference: {fileID: 0}
-    - target: {fileID: 4881662309873388332, guid: 8e470406fab36274083c0e515eb49b0d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e470406fab36274083c0e515eb49b0d, type: 3}
@@ -5371,14 +5343,6 @@ PrefabInstance:
     - target: {fileID: 7906712940629965398, guid: 2c0794dd22e18ab40a57b8c1845e718f, type: 3}
       propertyPath: m_Name
       value: client
-      objectReference: {fileID: 0}
-    - target: {fileID: 7906712940629965398, guid: 2c0794dd22e18ab40a57b8c1845e718f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8306745749510854546, guid: 2c0794dd22e18ab40a57b8c1845e718f, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c0794dd22e18ab40a57b8c1845e718f, type: 3}
