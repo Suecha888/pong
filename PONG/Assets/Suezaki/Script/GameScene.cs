@@ -19,7 +19,6 @@ public class GameScene : MonoBehaviour
     // 試合終了から遷移までの時間
     [SerializeField] float EndToChangeTime = 1.0f;
     
-    private KeyCode BallStartKey;
 
     private bool scenechange = false;
 
@@ -27,18 +26,21 @@ public class GameScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // ルームオブジェクトの取得
         ball = GameObject.FindGameObjectWithTag("Ball");
         //if (ball == null)
         //    setobjFlg = false;
         score = GameObject.Find("score(Clone)");
         message = GameObject.Find("pressbutton(Clone)");
         //setobj();
+
+
         // クライアント（マスター以外）の場合にずれてしまうシーンのインデックスを整理
         if (DontDestroy.instance.GetComponent<SceneChange>().getIndex() != 1)
         DontDestroy.instance.GetComponent<SceneChange>().setIndex(1);
 
         DontDestroy.instance.GetComponent<SceneChange>().leave = false;
-           BallStartKey = GetComponent<Key>().GetBallStartKey();
+
         // スコアイベントの登録
         for (int i = 0; i < score.transform.GetChild(0).transform.childCount; ++i)
         DontDestroy.instance.GetComponent<Event>().ScoreEvent[i].AddListener(score.transform.GetChild(0).transform.GetChild(i).GetComponent<ShowScore>().ShowScoreText);
@@ -53,11 +55,16 @@ public class GameScene : MonoBehaviour
         //    setobjFlg = true;
         //    setobj();
         //}
+
+
+        // ルーム切断（仮）
         if(Input.GetKey(KeyCode.C))
         {
             DontDestroy.instance.GetComponent<SceneChange>().UpdateLeave();
             DontDestroy.instance.GetComponent<SceneChange>().LeaveRoom();
         }
+
+        // 決着がついたかどうか
         if(battle_data.flg)
         {
             if (!scenechange)
@@ -98,11 +105,13 @@ public class GameScene : MonoBehaviour
                 message.SetActive(false);
             }
 
-
+            // どちらかが得点
             if (ball.GetComponent<Ball>().ScorePlayerId > -1)
-            {// 得点
+            {
+                // 得点処理
                 DontDestroy.instance.GetComponent<Data>().winner.name = score.transform.GetChild(0).transform.GetChild(ball.GetComponent<Ball>().ScorePlayerId).name;
                 DontDestroy.instance.GetComponent<Event>().ScoreEvent[ball.GetComponent<Ball>().ScorePlayerId].Invoke(1, battle_data);
+                // ボールの状態をリセット
                 ball.GetComponent<Ball>().ResetBall();
             }
 
@@ -114,14 +123,14 @@ public class GameScene : MonoBehaviour
         
     }
     
-    void setobj()
-    {
-        ball = GameObject.FindGameObjectWithTag("Ball");
-        if (ball == null)
-            setobjFlg = false;
-        score = GameObject.Find("score(Clone)");
-        message = GameObject.Find("pressbutton(Clone)");
-    }
+    //void setobj()
+    //{
+    //    ball = GameObject.FindGameObjectWithTag("Ball");
+    //    if (ball == null)
+    //        setobjFlg = false;
+    //    score = GameObject.Find("score(Clone)");
+    //    message = GameObject.Find("pressbutton(Clone)");
+    //}
 
     
 }

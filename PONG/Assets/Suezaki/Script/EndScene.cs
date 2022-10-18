@@ -5,20 +5,24 @@ using Photon.Pun;
 
 public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
 {
+    // �V�[����؂�ւ���L�[
     private KeyCode SceneChangeKey;
+    // ���ҕ\���I�u�W�F�N�g
     [SerializeField] GameObject winner;
-
+    // �{�^���ē��\��
     [SerializeField]
     private GameObject StartAnounce;
+    // ���Җ�
     [SerializeField]
     string winnername ="";
     string oldname = "";
+
     // Start is called before the first frame update
     void Start()
     {
         DontDestroy.instance.GetComponent<SceneChange>().load = false;
         DontDestroy.instance.GetComponent<Event>().WinnerEvent.AddListener(winner.GetComponent<ShowWinner>().showWinner);
-        // ���҂̕\��
+        // ���҂̕\��
         if (PhotonNetwork.IsMasterClient)
         {
             DontDestroy.instance.GetComponent<Event>().WinnerEvent.Invoke(DontDestroy.instance.GetComponent<Data>().winner.name);
@@ -40,11 +44,9 @@ public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
             winnername = DontDestroy.instance.GetComponent<Data>().winner.name;
         }
 
-
+        // ���O�\��
         if (winnername != oldname)
         {
-            Debug.Log("aaaaa :" + winnername);
-            
             DontDestroy.instance.GetComponent<Event>().WinnerEvent.Invoke(winnername);
             oldname = winnername;
             winner.SetActive(true);
@@ -54,6 +56,7 @@ public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
         {
             StartAnounce.transform.Find("press_button").gameObject.SetActive(true);
             StartAnounce.transform.Find("client").gameObject.SetActive(false);
+            // �}�X�^�[�N���C�A���g�̂݃V�[���J�ډ\
             if (Input.GetKey(SceneChangeKey) && !DontDestroy.instance.GetComponent<SceneChange>().load)
             {
                 DontDestroy.instance.GetComponent<SceneChange>().load = true;

@@ -11,6 +11,7 @@ public class ShowWinner : MonoBehaviour
     {
         win = GetComponent<TextMeshProUGUI>();
     }
+    // ŸÒ‚Ì–¼‘O‚ğ
     public void showWinner(string name)
     {
         win.text = new string(name + " WIN!!");

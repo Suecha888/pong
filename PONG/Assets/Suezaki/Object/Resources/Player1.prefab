@@ -115,8 +115,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  master: 0
-  ismain: 0
   status: 2
 --- !u!114 &3311349960155393416
 MonoBehaviour:

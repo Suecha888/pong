@@ -72,6 +72,9 @@ public class Luncher : MonoBehaviourPunCallbacks
         Debug.Log("suezaki/Luncher: OnJoinedRoom() called by PUN. Now this client is in a room.");
     }
 
-    
+    public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
+    {
+        base.OnPlayerLeftRoom(otherPlayer);
+    }
     #endregion
 }
