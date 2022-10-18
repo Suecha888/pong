@@ -5,14 +5,18 @@ using Photon.Pun;
 
 public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
 {
+    // シーンを切り替えるキー
     private KeyCode SceneChangeKey;
+    // 勝者表示オブジェクト
     [SerializeField] GameObject winner;
-
+    // ボタン案内表示
     [SerializeField]
     private GameObject StartAnounce;
+    // 勝者名
     [SerializeField]
     string winnername ="";
     string oldname = "";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,11 +44,9 @@ public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
             winnername = DontDestroy.instance.GetComponent<Data>().winner.name;
         }
 
-
+        // 名前表示
         if (winnername != oldname)
         {
-            Debug.Log("aaaaa :" + winnername);
-            
             DontDestroy.instance.GetComponent<Event>().WinnerEvent.Invoke(winnername);
             oldname = winnername;
             winner.SetActive(true);
@@ -55,7 +57,7 @@ public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
         {
             StartAnounce.transform.Find("press_button").gameObject.SetActive(true);
             StartAnounce.transform.Find("client").gameObject.SetActive(false);
-
+            // マスタークライアントのみシーン遷移可能
             if (Input.GetKey(SceneChangeKey) && !DontDestroy.instance.GetComponent<SceneChange>().load)
             {
                 DontDestroy.instance.GetComponent<SceneChange>().load = true;
