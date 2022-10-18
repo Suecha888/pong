@@ -87,8 +87,8 @@ public class SceneChange : MonoBehaviourPunCallbacks
     // ローカルユーザー/クライアントがルームを出たときに呼び出され、ゲームのロジックが内部状態をクリーンアップできるようにします
     public override void OnLeftRoom()
     {
-        if(index == 3)
-        PhotonNetwork.LoadLevel(scenes[index % max]);
+        index = 0;
+        PhotonNetwork.LoadLevel(scenes[index]);
         base.OnLeftRoom();
     }
 
