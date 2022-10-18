@@ -47,7 +47,6 @@ public class StartScene : MonoBehaviour
             // マスタークライアントはシーン切替ボタンの表示
             if (PhotonNetwork.IsMasterClient)
             {
-                Debug.Log("マスター！");
                 StartAnounce.transform.Find("press_button").gameObject.SetActive(true);
                 StartAnounce.transform.Find("client").gameObject.SetActive(false);
 
