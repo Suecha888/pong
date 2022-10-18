@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class GameScene : MonoBehaviour
+public class GameScene : MonoBehaviourPunCallbacks
 {
     // プレイヤーのスコアオブジェクト
     [SerializeField] GameObject score;
@@ -122,7 +124,13 @@ public class GameScene : MonoBehaviour
         
         
     }
-    
+
+    public override void OnPlayerLeftRoom(Photon.Realtime.Player other)
+    {
+        DontDestroy.instance.GetComponent<SceneChange>().UpdateLeave();
+        DontDestroy.instance.GetComponent<SceneChange>().LeaveRoom();
+    }
+
     //void setobj()
     //{
     //    ball = GameObject.FindGameObjectWithTag("Ball");
@@ -132,5 +140,4 @@ public class GameScene : MonoBehaviour
     //    message = GameObject.Find("pressbutton(Clone)");
     //}
 
-    
 }
