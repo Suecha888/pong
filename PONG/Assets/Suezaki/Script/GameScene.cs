@@ -22,12 +22,17 @@ public class GameScene : MonoBehaviour
     private KeyCode BallStartKey;
 
     private bool scenechange = false;
+
+    private bool setobjFlg = false;
     // Start is called before the first frame update
     void Start()
     {
         ball = GameObject.FindGameObjectWithTag("Ball");
+        //if (ball == null)
+        //    setobjFlg = false;
         score = GameObject.Find("score(Clone)");
         message = GameObject.Find("pressbutton(Clone)");
+        //setobj();
         // クライアント（マスター以外）の場合にずれてしまうシーンのインデックスを整理
         if (DontDestroy.instance.GetComponent<SceneChange>().getIndex() != 1)
         DontDestroy.instance.GetComponent<SceneChange>().setIndex(1);
@@ -43,7 +48,11 @@ public class GameScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //if(!setobjFlg)
+        //{
+        //    setobjFlg = true;
+        //    setobj();
+        //}
         if(Input.GetKey(KeyCode.C))
         {
             DontDestroy.instance.GetComponent<SceneChange>().UpdateLeave();
@@ -105,6 +114,14 @@ public class GameScene : MonoBehaviour
         
     }
     
+    void setobj()
+    {
+        ball = GameObject.FindGameObjectWithTag("Ball");
+        if (ball == null)
+            setobjFlg = false;
+        score = GameObject.Find("score(Clone)");
+        message = GameObject.Find("pressbutton(Clone)");
+    }
 
     
 }

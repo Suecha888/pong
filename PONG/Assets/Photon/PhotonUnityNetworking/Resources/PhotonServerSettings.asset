@@ -42,6 +42,7 @@ MonoBehaviour:
   - GetScore
   - BallStart
   - StartFlg
+  - setName
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
