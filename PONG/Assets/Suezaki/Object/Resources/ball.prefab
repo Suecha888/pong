@@ -140,7 +140,6 @@ MonoBehaviour:
   speed: 5
   flg: 1
   client: 
-  ball: {fileID: 5401996164373971202}
   ScorePlayerId: -1
   dirX: 0
 --- !u!54 &2359648036481465155

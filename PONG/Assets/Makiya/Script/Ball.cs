@@ -5,31 +5,39 @@ using Photon.Pun;
 
 public class Ball : MonoBehaviourPunCallbacks,IPunObservable
 {
+    // 速度
     public float speed = 2.0f;
+    // スタート準備完了フラグ
     [SerializeField]
     bool flg = true;
+    // ボールの所有
     [SerializeField]
     string client;
+
     private Rigidbody rb;
     // ボールが当たった物体の法線ベクトル
     private Vector3 objNomalVector = Vector3.zero;
     // 跳ね返った後のverocity
     private Vector3 afterReflectVero = Vector3.zero;
-    public GameObject ball;
 
+    // スコア取得者
     public int ScorePlayerId = -1;
     private int OldScorePlayerId = -1;
-    private GameObject message;
 
+    // ボールの射出方向ｘ
     [SerializeField]
     private int dirX = 0;
+    // 方向セット
     private bool setDirFlg = false;
-
+    // クライアントがボールをスタートしたフラグ
     private bool startball = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
+        // マスタークライアントのみ方向セット
         if(PhotonNetwork.IsMasterClient)
         {
             SetDir();
@@ -47,17 +55,20 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
     {
         if(flg)
         {
+            // クライアントのスタートを受けてマスタークライアントがスタート
             if(PhotonNetwork.IsMasterClient && startball)
             {
                 StartBall();
                 startball = false;
             }
+            // ボールスタート
             if(Input.GetKeyDown(KeyCode.Space))
             {
                 if(((dirX == -1) && (PhotonNetwork.IsMasterClient)))
                 {
                     StartBall();
                 }
+                // クライアントはスタートした情報のみ渡す
                 else if(((dirX == 1) && (!PhotonNetwork.IsMasterClient)))
                 {
                     photonView.RPC(nameof(StartFlg), RpcTarget.All);
@@ -65,13 +76,8 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
                 
             }
         }
-        //if(Input.GetKeyDown(KeyCode.Space) && flg)
-        //{
-
-
-
-
-        //}
+        
+        // 以後マスタークライアントのみ処理
         if (!PhotonNetwork.IsMasterClient)
         {
             return;
@@ -98,6 +104,7 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
     {
         return dirX;
     }
+    // ボールをスタート位置にリセット
     public void ResetBall()
     {
         rb.velocity = Vector3.zero;
