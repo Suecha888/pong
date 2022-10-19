@@ -43,18 +43,12 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
     private bool setDirFlg = false;
     // クライアントがボールをスタートしたフラグ
     private bool startball = false;
-<<<<<<< HEAD
     // ボールの反射がランダムかどうか
     private bool reflectRandom = false;
     // ボールが加速するかどうか
     private bool ballaccel = false;
     // 最初のバウンド
     private bool firstbound = true;
-=======
-
-    public AudioClip SE1;
-    AudioSource audioSource;
->>>>>>> 61e9730845d2b2ad96ba7b4dbee3af9be18c9758
 
     // Start is called before the first frame update
     void Start()
@@ -73,8 +67,6 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
 
             client = new string("client");
         }
-
-        audioSource = GetComponent<AudioSource>();
     }
 
     
@@ -92,10 +84,7 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
             // ボールスタート
             if(Input.GetKeyDown(KeyCode.Space))
             {
-                // 音を鳴らす
-                audioSource.PlayOneShot(SE1);
-
-                if (((dirX == -1) && (PhotonNetwork.IsMasterClient)))
+                if(((dirX == -1) && (PhotonNetwork.IsMasterClient)))
                 {
                     StartBall();
                 }
@@ -165,9 +154,6 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
     }
     void OnCollisionEnter(Collision collision)
     {
-        // 音を鳴らす
-        audioSource.PlayOneShot(SE1);
-
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
         {
             // 側面に当たったら消える

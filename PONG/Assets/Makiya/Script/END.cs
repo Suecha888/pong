@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class END : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public AudioClip SE1;
+    AudioSource audioSource;
+
+    private void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ENDClick()
     {
-        // ÉQÅ[ÉÄÇèIóπÇ∑ÇÈ
-        if(Input.GetKey(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
+        // âπÇñ¬ÇÁÇ∑
+        audioSource.PlayOneShot(SE1);
+        Application.Quit();
     }
 }
