@@ -12,6 +12,12 @@ public class Setting : MonoBehaviour
     // 最大スコア
     [SerializeField]
     int MaxScore = 15;
+    // ボールのバウンドがランダムかどうか
+    [SerializeField]
+    bool BallBoundRandom = false;
+    // ボールの加速
+    [SerializeField]
+    bool BallAccel = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,5 +50,25 @@ public class Setting : MonoBehaviour
         }
     }
 
+    // ボールの反射フラグ取得
+    public bool GetBallBound()
+    {
+        return BallBoundRandom;
+    }
+    // ボールの反射の切替
+    public void SwitchBallBound()
+    {
+        BallBoundRandom = !BallBoundRandom;
+    }
+    // ボールの加速フラグ取得
+    public bool GetBallAccel()
+    {
+        return BallAccel;
+    }
+    // ボールの加速の切替
+    public void SwitchBallAccel()
+    {
+        BallAccel = !BallAccel;
+    }
 
 }

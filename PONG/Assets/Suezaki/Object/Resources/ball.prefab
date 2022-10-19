@@ -138,6 +138,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  SpeedMaxMagnification: 3
+  TimeToMaxSpeed: 30
+  SpeedTimer: 0
   flg: 1
   client: 
   ScorePlayerId: -1

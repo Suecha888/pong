@@ -6,7 +6,19 @@ using Photon.Pun;
 public class Ball : MonoBehaviourPunCallbacks,IPunObservable
 {
     // 速度
-    public float speed = 2.0f;
+    [SerializeField]
+    public float speed = 5.0f;
+    [Range(1,3)]
+    // 速度の最大倍率
+    public int SpeedMaxMagnification = 2;
+    // 初速
+    float startSpeed;
+    [SerializeField]
+    // 最高速度までの時間
+    float TimeToMaxSpeed = 30.0f;
+    // timer
+    [SerializeField]
+    float SpeedTimer = 0;
     // スタート準備完了フラグ
     [SerializeField]
     bool flg = true;
@@ -31,11 +43,19 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
     private bool setDirFlg = false;
     // クライアントがボールをスタートしたフラグ
     private bool startball = false;
-
+    // ボールの反射がランダムかどうか
+    private bool reflectRandom = false;
+    // ボールが加速するかどうか
+    private bool ballaccel = false;
+    // 最初のバウンド
+    private bool firstbound = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        reflectRandom = DontDestroy.instance.GetComponent<Setting>().GetBallBound();
+        ballaccel = DontDestroy.instance.GetComponent<Setting>().GetBallAccel();
+        startSpeed = speed;
         rb = this.GetComponent<Rigidbody>();
         // マスタークライアントのみ方向セット
         if(PhotonNetwork.IsMasterClient)
@@ -82,6 +102,24 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
         {
             return;
         }
+
+        // ボール加速
+        if (ballaccel)
+        {
+            if (!flg)
+            {
+                if (speed <= startSpeed * SpeedMaxMagnification)
+                {
+
+
+                    SpeedTimer += Time.deltaTime;
+                    speed = startSpeed + (startSpeed * SpeedMaxMagnification - startSpeed) * (SpeedTimer - 0) / (TimeToMaxSpeed - 0);
+                    rb.velocity = rb.velocity.normalized* speed;
+                    afterReflectVero = rb.velocity;
+                }
+            }
+        }
+
         // 画面外にボールが出た時
         if (transform.position.x >= 9 && !flg)
         {
@@ -137,11 +175,32 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
             else
                 vecx = 1;
 
-            Vector3 returnVec = new Vector3(vecx, Random.Range(-1.0f, 1.0f), 0).normalized;
-            rb.velocity = afterReflectVero.magnitude * returnVec;
+            if (reflectRandom)
+            {
+                // 反射ランダム
+                Vector3 returnVec = new Vector3(vecx, Random.Range(-1.0f, 1.0f), 0).normalized;
+                rb.velocity = afterReflectVero.magnitude * returnVec;
+            }
+            else
+            {
+                if (firstbound)
+                {
+                    firstbound = false;
+                    // 反射ランダム
+                    Vector3 returnVec = new Vector3(vecx, Random.Range(-1.0f, 1.0f), 0).normalized;
+                    rb.velocity = afterReflectVero.magnitude * returnVec;
+                }
+                else
+                {
+                    // 反射物理
+                    // 当たった物体の法線ベクトルを取得
+                    objNomalVector = collision.contacts[0].normal;
+                    Vector3 reflectVec = Vector3.Reflect(afterReflectVero, objNomalVector);
+                    rb.velocity = reflectVec;
+                }
+            }
             // 計算した反射ベクトルを保存
             afterReflectVero = rb.velocity;
-            Debug.Log(rb.velocity);
         }
 
         if (collision.gameObject.tag == "Wall")
@@ -214,6 +273,10 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
         afterReflectVero = rb.velocity;
         flg = false;
         setDirFlg = false;
+
+        SpeedTimer = 0;
+        speed = startSpeed;
+        firstbound = true;
     }
 
     [PunRPC]

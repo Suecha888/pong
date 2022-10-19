@@ -34,7 +34,7 @@ public class showmatchpoint : MonoBehaviourPun
     public void ShowMatchPoint()
     {
         score = DontDestroy.instance.GetComponent<Setting>().GetMaxScore();
-        maxscoreText.text = score.ToString() + " point match.";
+        maxscoreText.text = $"<color=#{matchsetting.TextColor.RED:X}>"+score.ToString()+"</color>" + " point match.";
     }
     [PunRPC]
     public void SetMatchPointAdd()
