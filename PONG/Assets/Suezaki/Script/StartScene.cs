@@ -56,7 +56,8 @@ public class StartScene : MonoBehaviour
         // 接続したら表示を切り替える
         if (connect)
         {
-            if(!settingtext)
+            // マスタークライアントだけ表示
+            if(!settingtext && PhotonNetwork.IsMasterClient)
             {
                 StartAnounce.transform.Find("setting").gameObject.SetActive(true);
                 settingtext = true;

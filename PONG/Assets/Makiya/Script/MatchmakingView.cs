@@ -15,8 +15,9 @@ public class MatchmakingView : MonoBehaviourPunCallbacks
     [SerializeField]
     private GameObject StartScene;
 
-    public GameObject text;
     private CanvasGroup canvasGroup;
+    public AudioClip SE1;
+    AudioSource audioSource;
 
     private void Start()
     {
@@ -29,6 +30,8 @@ public class MatchmakingView : MonoBehaviourPunCallbacks
 
         roomNameInputField.onValueChanged.AddListener(OnRoomNameInputFieldValueChanged);
         createRoomButton.onClick.AddListener(OnCreateRoomButtonClick);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // マスターサーバーのロビーに入る時に呼ばれるコールバック
@@ -49,7 +52,8 @@ public class MatchmakingView : MonoBehaviourPunCallbacks
     {
         // ルーム作成処理中は、入力できないようにする
         canvasGroup.interactable = false;
-
+        // 音を鳴らす
+        audioSource.PlayOneShot(SE1);
         // 入力フィールドに入力したルーム名のルームを作成する
         var roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 2;             // ルームの上限人数を２人にする
@@ -74,19 +78,10 @@ public class MatchmakingView : MonoBehaviourPunCallbacks
     // ゲームサーバーへの接続が成功した時に呼ばれるコールバック
     public override void OnJoinedRoom()
     {
-        //if (PhotonNetwork.IsMasterClient)
-        //{
-        //    // テキストを表示
-        //    text.SetActive(true);
-        //}
-
         this.StartScene.GetComponent<StartScene>().Setconnect();
 
         // ルームへの参加が成功したら、UIを非表示にする
         gameObject.SetActive(false);
-        
-        //Debug.Log("ゲームサーバーに接続成功");
-
     }
 
     // ゲームサーバーに接続が失敗した時に呼ばれるコールバック
