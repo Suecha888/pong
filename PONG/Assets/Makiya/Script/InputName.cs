@@ -32,7 +32,7 @@ public class InputName : MonoBehaviourPunCallbacks
         audioSource.PlayOneShot(SE1);
 
         // ñºëOÇï\é¶Ç∑ÇÈ
-        tmpName.text = Inputname.text.ToString();
+        tmpName.text = "NickName : " + Inputname.text.ToString();
         // ñºëOÇê›íË
         PhotonNetwork.NickName = Inputname.text;
         //Debug.Log(PhotonNetwork.NickName);

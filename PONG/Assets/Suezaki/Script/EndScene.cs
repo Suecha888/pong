@@ -5,6 +5,9 @@ using Photon.Pun;
 
 public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
 {
+    public AudioClip SE1;
+    AudioSource audioSource;
+
     // シーンを切り替えるキー
     private KeyCode SceneChangeKey;
     // 勝者表示オブジェクト
@@ -20,6 +23,7 @@ public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         DontDestroy.instance.GetComponent<SceneChange>().load = false;
         DontDestroy.instance.GetComponent<Event>().WinnerEvent.AddListener(winner.GetComponent<ShowWinner>().showWinner);
         // 勝者の表示
@@ -59,6 +63,8 @@ public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
             // マスタークライアントのみシーン遷移可能
             if (Input.GetKey(SceneChangeKey) && !DontDestroy.instance.GetComponent<SceneChange>().load)
             {
+                // 音を鳴らす
+                audioSource.PlayOneShot(SE1);
                 DontDestroy.instance.GetComponent<SceneChange>().load = true;
                 DontDestroy.instance.GetComponent<SceneChange>().ChangeScene();
                 DontDestroy.instance.GetComponent<SceneChange>().LeaveRoom();

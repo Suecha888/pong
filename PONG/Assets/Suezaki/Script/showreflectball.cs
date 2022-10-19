@@ -6,6 +6,9 @@ using Photon.Pun;
 
 public class showreflectball : MonoBehaviourPun
 {
+    public AudioClip SE1;
+    AudioSource audioSource;
+
     // 反射するかどうか
     bool bound = false;
     // 表示テキスト
@@ -13,6 +16,7 @@ public class showreflectball : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         boundText = GetComponent<TextMeshProUGUI>();
         ShowReflect();
     }
@@ -20,11 +24,19 @@ public class showreflectball : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Q))
-        {
-            photonView.RPC(nameof(SetReflectSwitch), RpcTarget.All);
-        }
+        //if (Input.GetKey(KeyCode.Q))
+        //{
+        //    photonView.RPC(nameof(SetReflectSwitch), RpcTarget.All);
+        //}
     }
+
+    public void BoundClick()
+    {
+        // 音を鳴らす
+        audioSource.PlayOneShot(SE1);
+        photonView.RPC(nameof(SetReflectSwitch), RpcTarget.All);
+    }
+
     public void ShowReflect()
     {
         bound = DontDestroy.instance.GetComponent<Setting>().GetBallBound();

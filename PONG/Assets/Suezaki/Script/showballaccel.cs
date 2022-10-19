@@ -6,6 +6,9 @@ using Photon.Pun;
 
 public class showballaccel : MonoBehaviourPun
 {
+    public AudioClip SE1;
+    AudioSource audioSource;
+
     // 加速するかどうか
     bool accel = false;
     // 表示テキスト
@@ -13,6 +16,7 @@ public class showballaccel : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         accelText = GetComponent<TextMeshProUGUI>();
         ShowAccel();
     }
@@ -20,11 +24,19 @@ public class showballaccel : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.E))
-        {
-            photonView.RPC(nameof(SetAccelSwitch), RpcTarget.All);
-        }
+        //if (Input.GetKey(KeyCode.E))
+        //{
+        //    photonView.RPC(nameof(SetAccelSwitch), RpcTarget.All);
+        //}
     }
+
+    public void AccelClick()
+    {
+        // 音を鳴らす
+        audioSource.PlayOneShot(SE1);
+        photonView.RPC(nameof(SetAccelSwitch), RpcTarget.All);
+    }
+
     public void ShowAccel()
     {
         accel = DontDestroy.instance.GetComponent<Setting>().GetBallAccel();
