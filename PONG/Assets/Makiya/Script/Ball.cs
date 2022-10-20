@@ -53,6 +53,11 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
     public AudioClip SE1;
     AudioSource audioSource;
 
+    // 当たり判定リスト
+    [SerializeField]
+    private List<GameObject> colList = new List<GameObject>();
+    private bool doublehitflg = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -104,6 +109,7 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
                 
             }
         }
+        
         
         // 以後マスタークライアントのみ処理
         if (!PhotonNetwork.IsMasterClient)
@@ -160,10 +166,64 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
         ScorePlayerId = -1;
         SetDir();
     }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2" || collision.gameObject.tag == "Wall")
+            colList.Remove(collision.gameObject);
+
+        if (colList.Count == 0)
+            doublehitflg = false;
+    }
     void OnCollisionEnter(Collision collision)
     {
+        if (doublehitflg)
+            return;
+
+        if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2" || collision.gameObject.tag == "Wall")
+            colList.Add(collision.gameObject);
+
         // 音を鳴らす
         audioSource.PlayOneShot(SE1);
+
+        // 壁とプレイヤーに同時に当たる
+        if(colList.Count == 2)
+        {
+            if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
+            {
+                // 側面に当たったら消える
+                if (collision.contacts[0].normal.x == 0)
+                {
+                    if (rb.velocity.x > 0)
+                    {
+                        ScorePlayerId = 0;
+                    }
+                    else
+                        ScorePlayerId = 1;
+
+                    return;
+                }
+            }
+            int vecx;
+            if (afterReflectVero.x > 0)
+                vecx = -1;
+            else
+                vecx = 1;
+            // 反射ランダム
+            int angle = Random.Range(25, 45);
+            if (transform.position.y > 0)
+            {
+                angle *= -1;
+            }
+
+
+            Vector3 returnVec = new Vector3(vecx, Mathf.Tan(angle * Mathf.Deg2Rad), 0).normalized;
+            rb.velocity = afterReflectVero.magnitude * returnVec;
+
+            // 計算した反射ベクトルを保存
+            afterReflectVero = rb.velocity;
+            doublehitflg = true;
+            return;
+        }
 
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
         {
@@ -198,7 +258,14 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
                 {
                     firstbound = false;
                     // 反射ランダム
-                    Vector3 returnVec = new Vector3(vecx, Random.Range(-1.0f, 1.0f), 0).normalized;
+                    int angle = Random.Range(25, 45);
+                    if(Random.Range(1,10)%2 == 1)
+                    {
+                        angle *= -1;
+                    }
+                    
+
+                    Vector3 returnVec = new Vector3(vecx, Mathf.Tan(angle * Mathf.Deg2Rad), 0).normalized;
                     rb.velocity = afterReflectVero.magnitude * returnVec;
                 }
                 else
