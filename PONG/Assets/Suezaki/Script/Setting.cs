@@ -35,7 +35,6 @@ public class Setting : MonoBehaviour
     // ƒŠƒZƒbƒg
     public void ResetSetting()
     {
-        Debug.Log("İ’èreset");
         MaxScore = oldMaxScore;
         BallBoundRandom = oldBallBoundRandom;
         BallAccel = oldBallAccel;

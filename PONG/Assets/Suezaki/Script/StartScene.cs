@@ -24,6 +24,9 @@ public class StartScene : MonoBehaviour
     public GameObject pointButton2;
     public GameObject boundButton;
     public GameObject accelButton;
+    public AudioClip SE1;
+    AudioSource audioSource;
+    bool se = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +38,7 @@ public class StartScene : MonoBehaviour
         SceneChangeKey = GetComponent<Key>().GetSceneChangeKey();
         // シーンチェンジフラグoff
         DontDestroy.instance.GetComponent<SceneChange>().load = false;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -107,6 +111,12 @@ public class StartScene : MonoBehaviour
             // マスタークライアントはシーン切替ボタンの表示
             if (PhotonNetwork.IsMasterClient && ready)
             {
+                if (se)
+                {
+                    // 音を鳴らす
+                    audioSource.PlayOneShot(SE1);
+                    se = false;
+                }
                 StartAnounce.transform.Find("press_button").gameObject.SetActive(true);
                 StartAnounce.transform.Find("client").gameObject.SetActive(false);
 
@@ -134,6 +144,7 @@ public class StartScene : MonoBehaviour
     {
         connect = true;
         settingtext = false;
+        se = true;
     }
     
 }
