@@ -12,7 +12,6 @@ public class testButton : MonoBehaviourPunCallbacks
 
     public GameObject TitlePanel;
     public GameObject InputNamePanel;
-    public GameObject RoomPanel;
     public AudioClip SE1;
     AudioSource audioSource;
     private RoomList roomList = new RoomList();     // ì¬‚µ‚½ƒ‹[ƒ€‚ÌƒŠƒXƒg
@@ -46,7 +45,7 @@ public class testButton : MonoBehaviourPunCallbacks
         else
         {
             roomList.Clear();
-            RoomPanel.SetActive(true);
+            InputNamePanel.SetActive(true);
             TitlePanel.SetActive(false);
         }
     }
