@@ -9,6 +9,8 @@ public class ShowPressButton : MonoBehaviour
     GameObject sceneObject;
     // 表示テキスト
     TextMeshProUGUI pressButtonText;
+    [SerializeField]
+    Gradient gradient;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,5 +18,12 @@ public class ShowPressButton : MonoBehaviour
         sceneObject = GameObject.FindGameObjectWithTag("scene");
         // 表示テキスト内容変更
         pressButtonText.text = new string( "press " + sceneObject?.GetComponent<Key>().GetSceneChangeKey().ToString());
+    }
+    private void Update()
+    {
+        if (sceneObject.GetComponent<StartScene>() != null)
+        {
+            pressButtonText.color = gradient.Evaluate(Mathf.PingPong(Time.time, 1.0f));
+        }
     }
 }
