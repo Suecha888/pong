@@ -28,8 +28,6 @@ public class StartScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneChange.gameScene = false;
-        SceneChange.endScene = false;
         // ê⁄ë±ë“ã@ÇÃï\é¶
         //StartAnounce.transform.Find("conect").gameObject.SetActive(true);
 

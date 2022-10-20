@@ -105,10 +105,11 @@ public class SceneChange : MonoBehaviourPunCallbacks
     {
         if (gameScene || endScene)
         {
-
-            Debug.LogFormat("OnPlayerLeftRoom() {0}", other.NickName);
             DontDestroy.instance.GetComponent<SceneChange>().UpdateLeave();
             DontDestroy.instance.GetComponent<SceneChange>().LeaveRoom();
+            gameScene = false;
+            endScene = false;
+            Debug.LogFormat("OnPlayerLeftRoom() {0}", other.NickName);
 
             if (PhotonNetwork.IsMasterClient)
             {
