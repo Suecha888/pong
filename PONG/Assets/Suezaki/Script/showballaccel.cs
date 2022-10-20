@@ -8,6 +8,7 @@ public class showballaccel : MonoBehaviourPun
 {
     public AudioClip SE1;
     AudioSource audioSource;
+    public static bool reset = true;
 
     // ‰Á‘¬‚·‚é‚©‚Ç‚¤‚©
     bool accel = false;
@@ -21,13 +22,13 @@ public class showballaccel : MonoBehaviourPun
         ShowAccel();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //if (Input.GetKey(KeyCode.E))
-        //{
-        //    photonView.RPC(nameof(SetAccelSwitch), RpcTarget.All);
-        //}
+        if (reset)
+        {
+            ShowAccel();
+            reset = false;
+        }
     }
 
     public void AccelClick()

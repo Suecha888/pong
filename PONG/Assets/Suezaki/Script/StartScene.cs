@@ -19,12 +19,20 @@ public class StartScene : MonoBehaviour
     bool ready = false;
     // setting テキストの表示
     bool settingtext = false;
+
+    public GameObject pointButton1;
+    public GameObject pointButton2;
+    public GameObject boundButton;
+    public GameObject accelButton;
+
     // Start is called before the first frame update
     void Start()
     {
+        SceneChange.gameScene = false;
+        SceneChange.endScene = false;
         // 接続待機の表示
         //StartAnounce.transform.Find("conect").gameObject.SetActive(true);
-        
+
         // シーンチェンジのキーを取得
         SceneChangeKey = GetComponent<Key>().GetSceneChangeKey();
         // シーンチェンジフラグoff
@@ -53,15 +61,50 @@ public class StartScene : MonoBehaviour
             }
         }
 
+        // backボタンで戻った時
+        if(PhotonNetwork.IsMasterClient && SceneChange.backroom)
+        {
+            connect = false;
+            settingtext = true;
+            StartAnounce.transform.Find("press_button").gameObject.SetActive(false);
+            StartAnounce.transform.Find("client").gameObject.SetActive(false);
+            pointButton1.SetActive(false);
+            pointButton2.SetActive(false);
+            boundButton.SetActive(false);
+            accelButton.SetActive(false);
+        }
+        if(!PhotonNetwork.IsMasterClient && SceneChange.backroom2)
+        {
+            connect = false;
+            settingtext = true;
+            StartAnounce.transform.Find("press_button").gameObject.SetActive(false);
+            StartAnounce.transform.Find("client").gameObject.SetActive(false);
+            pointButton1.SetActive(false);
+            pointButton2.SetActive(false);
+            boundButton.SetActive(false);
+            accelButton.SetActive(false);
+        }
+        
         // 接続したら表示を切り替える
         if (connect)
         {
-            // マスタークライアントだけ表示
-            if(!settingtext && PhotonNetwork.IsMasterClient)
+            if (!settingtext)
             {
                 StartAnounce.transform.Find("setting").gameObject.SetActive(true);
+                showmatchpoint.reset = true;
+                showreflectball.reset = true;
+                showballaccel.reset = true;
+                // マスタークライアントだけにボタン表示
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    pointButton1.SetActive(true);
+                    pointButton2.SetActive(true);
+                    boundButton.SetActive(true);
+                    accelButton.SetActive(true);
+                }
                 settingtext = true;
             }
+
             //StartAnounce.transform.Find("conect").gameObject.SetActive(false);
             // マスタークライアントはシーン切替ボタンの表示
             if (PhotonNetwork.IsMasterClient && ready)
@@ -76,7 +119,7 @@ public class StartScene : MonoBehaviour
                 StartAnounce.transform.Find("press_button").gameObject.SetActive(false);
                 StartAnounce.transform.Find("client").gameObject.SetActive(true);
             }
-                
+
         }
 
         // サーバーに接続
@@ -92,6 +135,7 @@ public class StartScene : MonoBehaviour
     public void Setconnect()
     {
         connect = true;
+        settingtext = false;
     }
     
 }

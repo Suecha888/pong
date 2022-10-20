@@ -7,6 +7,7 @@ public class showmatchpoint : MonoBehaviourPun
 {
     public AudioClip SE1;
     AudioSource audioSource;
+    public static bool reset = true;
 
     // 何点マッチか
     int score = 0;
@@ -20,19 +21,13 @@ public class showmatchpoint : MonoBehaviourPun
         ShowMatchPoint();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //if(Input.GetKey(KeyCode.A))
-        //{
-        //    photonView.RPC(nameof(SetMatchPointAdd), RpcTarget.All);
-        //    //SetMatchPointAdd();
-        //}
-        //else if(Input.GetKey(KeyCode.D))
-        //{
-        //    photonView.RPC(nameof(SetMatchPointMinus), RpcTarget.All);
-        //    //SetMatchPointMinus();
-        //}
+        if (reset)
+        {
+            ShowMatchPoint();
+            reset = false;
+        }
     }
 
     public void PointAddClick()

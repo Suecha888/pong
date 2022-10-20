@@ -28,6 +28,8 @@ public class GameScene : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+        SceneChange.gameScene = true;
+
         // ルームオブジェクトの取得
         ball = GameObject.FindGameObjectWithTag("Ball");
         //if (ball == null)

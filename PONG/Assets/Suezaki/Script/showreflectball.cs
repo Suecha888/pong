@@ -8,6 +8,7 @@ public class showreflectball : MonoBehaviourPun
 {
     public AudioClip SE1;
     AudioSource audioSource;
+    public static bool reset = true;
 
     // ”½ŽË‚·‚é‚©‚Ç‚¤‚©
     bool bound = false;
@@ -21,13 +22,13 @@ public class showreflectball : MonoBehaviourPun
         ShowReflect();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //if (Input.GetKey(KeyCode.Q))
-        //{
-        //    photonView.RPC(nameof(SetReflectSwitch), RpcTarget.All);
-        //}
+        if (reset)
+        {
+            ShowReflect();
+            reset = false;
+        }
     }
 
     public void BoundClick()

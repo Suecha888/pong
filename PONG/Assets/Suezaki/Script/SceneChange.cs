@@ -19,6 +19,11 @@ public class SceneChange : MonoBehaviourPunCallbacks
     public bool load = false;
     // シーン戻るフラグ
     public bool leave = false;
+    public static bool backroom = false;
+    public static bool backroom2 = false;
+    public static bool gameScene = false;
+    public static bool endScene = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,22 +92,29 @@ public class SceneChange : MonoBehaviourPunCallbacks
     // ローカルユーザー/クライアントがルームを出たときに呼び出され、ゲームのロジックが内部状態をクリーンアップできるようにします
     public override void OnLeftRoom()
     {
-        index = 0;
-        PhotonNetwork.LoadLevel(scenes[index]);
-        base.OnLeftRoom();
+        if (gameScene || endScene)
+        {
+            index = 0;
+            PhotonNetwork.LoadLevel(scenes[index]);
+            base.OnLeftRoom();
+        }
     }
 
     // リモートプレイヤーがルームを離れるか、非アクティブになったときに呼び出されます。
     public override void OnPlayerLeftRoom(Photon.Realtime.Player other)
     {
-        DontDestroy.instance.GetComponent<SceneChange>().UpdateLeave();
-        DontDestroy.instance.GetComponent<SceneChange>().LeaveRoom();
-        Debug.LogFormat("OnPlayerLeftRoom() {0}", other.NickName);
-
-        if (PhotonNetwork.IsMasterClient)
+        if (gameScene || endScene)
         {
-            Debug.LogFormat("OnPlayerLeftRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient);
 
+            Debug.LogFormat("OnPlayerLeftRoom() {0}", other.NickName);
+            DontDestroy.instance.GetComponent<SceneChange>().UpdateLeave();
+            DontDestroy.instance.GetComponent<SceneChange>().LeaveRoom();
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Debug.LogFormat("OnPlayerLeftRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient);
+
+            }
         }
     }
     #endregion

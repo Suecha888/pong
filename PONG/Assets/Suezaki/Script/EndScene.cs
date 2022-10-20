@@ -23,6 +23,8 @@ public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
     // Start is called before the first frame update
     void Start()
     {
+        SceneChange.gameScene = false;
+        SceneChange.endScene = true;
         audioSource = GetComponent<AudioSource>();
         DontDestroy.instance.GetComponent<SceneChange>().load = false;
         DontDestroy.instance.GetComponent<Event>().WinnerEvent.AddListener(winner.GetComponent<ShowWinner>().showWinner);

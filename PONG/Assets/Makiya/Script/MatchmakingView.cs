@@ -13,11 +13,13 @@ public class MatchmakingView : MonoBehaviourPunCallbacks
     [SerializeField]
     private Button createRoomButton = default;
     [SerializeField]
-    private GameObject StartScene;
+    private GameObject startScene;
 
     private CanvasGroup canvasGroup;
     public AudioClip SE1;
     AudioSource audioSource;
+    public TMP_Text namenum;
+    int Maxname = 6;
 
     private void Start()
     {
@@ -32,6 +34,20 @@ public class MatchmakingView : MonoBehaviourPunCallbacks
         createRoomButton.onClick.AddListener(OnCreateRoomButtonClick);
 
         audioSource = GetComponent<AudioSource>();
+    }
+
+    private void Update()
+    {
+        // 名前の文字数表示
+        namenum.SetText("{0}/{1}", roomNameInputField.text.Length, Maxname);
+    }
+
+    // マスターサーバーへの接続が成功した時に呼ばれるコールバック
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("ルームを退出");
+        // ロビーに参加
+        PhotonNetwork.JoinLobby();
     }
 
     // マスターサーバーのロビーに入る時に呼ばれるコールバック
@@ -78,10 +94,18 @@ public class MatchmakingView : MonoBehaviourPunCallbacks
     // ゲームサーバーへの接続が成功した時に呼ばれるコールバック
     public override void OnJoinedRoom()
     {
-        this.StartScene.GetComponent<StartScene>().Setconnect();
+        this.startScene.GetComponent<StartScene>().Setconnect();
 
         // ルームへの参加が成功したら、UIを非表示にする
         gameObject.SetActive(false);
+        if (PhotonNetwork.IsMasterClient && SceneChange.backroom)
+        {
+            SceneChange.backroom = false;
+        }
+        if(!PhotonNetwork.IsMasterClient && SceneChange.backroom2)
+        {
+            SceneChange.backroom2 = false;
+        }
     }
 
     // ゲームサーバーに接続が失敗した時に呼ばれるコールバック
