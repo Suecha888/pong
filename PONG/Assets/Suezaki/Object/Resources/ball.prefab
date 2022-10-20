@@ -147,6 +147,7 @@ MonoBehaviour:
   ScorePlayerId: -1
   dirX: 0
   SE1: {fileID: 8300000, guid: b258816009d8f61488e890f113968dba, type: 3}
+  colList: []
 --- !u!54 &2359648036481465155
 Rigidbody:
   m_ObjectHideFlags: 0

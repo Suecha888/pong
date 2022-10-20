@@ -3788,6 +3788,7 @@ GameObject:
   - component: {fileID: 1088481691}
   - component: {fileID: 1088481693}
   - component: {fileID: 1088481692}
+  - component: {fileID: 1088481694}
   m_Layer: 5
   m_Name: TitileLogo
   m_TagString: Untagged
@@ -3912,7 +3913,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088481690}
   m_CullTransparentMesh: 1
---- !u!1 &1127891131
+--- !u!114 &1088481694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088481690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ba95eaec6c911468aaf97a6a113968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveSinOffset: 1.5
+  waveheight: 6
+  timer: 0
+  chartimer: []
+  pos: []
+  moveCount: 
+  start: 1
+  interval: 5
+  waveNum: 2
+--- !u!1 &1106611529
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
