@@ -93,9 +93,9 @@ public class StartScene : MonoBehaviour
             if (!settingtext)
             {
                 StartAnounce.transform.Find("setting").gameObject.SetActive(true);
-                showmatchpoint.reset = true;
-                showreflectball.reset = true;
-                showballaccel.reset = true;
+                //showmatchpoint.reset = true;
+                //showreflectball.reset = true;
+                //showballaccel.reset = true;
                 // マスタークライアントだけにボタン表示
                 if (PhotonNetwork.IsMasterClient)
                 {
@@ -145,6 +145,9 @@ public class StartScene : MonoBehaviour
         connect = true;
         settingtext = false;
         se = true;
+        showmatchpoint.reset = true;
+        showreflectball.reset = true;
+        showballaccel.reset = true;
     }
     
 }
