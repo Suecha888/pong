@@ -27,15 +27,14 @@ public class Setting : MonoBehaviour
     {
         PhotonNetwork.SendRate = 20; // 1秒間にメッセージ送信を行う回数
         PhotonNetwork.SerializationRate = 10; // 1秒間にオブジェクト同期を行う回数
-        oldMaxScore = MaxScore;
-        oldBallBoundRandom = BallBoundRandom;
-        oldBallAccel = BallAccel;
+        oldMaxScore = 1;
+        oldBallBoundRandom = false;
+        oldBallAccel = false;
     }
 
     // リセット
     public void ResetSetting()
     {
-        Debug.Log("設定reset");
         MaxScore = oldMaxScore;
         BallBoundRandom = oldBallBoundRandom;
         BallAccel = oldBallAccel;

@@ -45,6 +45,8 @@ public class testButton : MonoBehaviourPunCallbacks
         else
         {
             roomList.Clear();
+            // İ’è‚Ì‰Šú‰»
+            DontDestroy.instance.GetComponent<Setting>().ResetSetting();
             InputNamePanel.SetActive(true);
             TitlePanel.SetActive(false);
         }

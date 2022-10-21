@@ -69,6 +69,7 @@ public class EndScene : MonoBehaviourPunCallbacks,IPunObservable
                 audioSource.PlayOneShot(SE1);
                 DontDestroy.instance.GetComponent<SceneChange>().load = true;
                 DontDestroy.instance.GetComponent<SceneChange>().ChangeScene();
+                SceneChange.endScene = false;
                 DontDestroy.instance.GetComponent<SceneChange>().LeaveRoom();
             }
         }
