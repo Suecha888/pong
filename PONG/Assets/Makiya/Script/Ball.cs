@@ -58,6 +58,8 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
     private List<GameObject> colList = new List<GameObject>();
     private bool doublehitflg = false;
 
+    private bool sidehit0 = false;
+    private bool sidehit1 = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -133,15 +135,17 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
                 }
             }
         }
-
+        
         // 画面外にボールが出た時
-        if (transform.position.x >= 9 && !flg)
+        if ((transform.position.x >= 9 && !flg) || sidehit0)
         {
             ScorePlayerId = 0;
+            sidehit0 = false;
         }
-        else if(transform.position.x <= -9 && !flg)
+        else if((transform.position.x <= -9 && !flg) || sidehit1)
         {
             ScorePlayerId = 1;
+            sidehit1 = false;
         }
     }
     public void StopBall()
@@ -195,11 +199,9 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
                 if (collision.contacts[0].normal.x == 0)
                 {
                     if (rb.velocity.x > 0)
-                    {
-                        ScorePlayerId = 0;
-                    }
+                        sidehit0 = true;
                     else
-                        ScorePlayerId = 1;
+                        sidehit1 = true;
 
                     return;
                 }
@@ -231,10 +233,10 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
             // 側面に当たったら消える
             if (collision.contacts[0].normal.x == 0)
             {
-                if(rb.velocity.x > 0)
-                    ScorePlayerId = 0;
+                if (rb.velocity.x > 0)
+                    sidehit0 = true;
                 else
-                    ScorePlayerId = 1;
+                    sidehit1 = true;
 
                 return;
             }
@@ -266,7 +268,7 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
                     }
                     
 
-                    Vector3 returnVec = new Vector3(vecx, Mathf.Tan(angle * Mathf.Deg2Rad), 0).normalized;
+                    Vector3 returnVec = new Vector3(vecx, 4.78f/16.0f/*Mathf.Tan(angle * Mathf.Deg2Rad)*/, 0).normalized;
                     rb.velocity = afterReflectVero.magnitude * returnVec;
                 }
                 else
