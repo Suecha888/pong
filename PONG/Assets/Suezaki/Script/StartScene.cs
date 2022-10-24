@@ -96,14 +96,7 @@ public class StartScene : MonoBehaviour
                 //showmatchpoint.reset = true;
                 //showreflectball.reset = true;
                 //showballaccel.reset = true;
-                // マスタークライアントだけにボタン表示
-                if (PhotonNetwork.IsMasterClient)
-                {
-                    pointButton1.SetActive(true);
-                    pointButton2.SetActive(true);
-                    boundButton.SetActive(true);
-                    accelButton.SetActive(true);
-                }
+                
                 settingtext = true;
             }
 
@@ -111,6 +104,12 @@ public class StartScene : MonoBehaviour
             // マスタークライアントはシーン切替ボタンの表示
             if (PhotonNetwork.IsMasterClient && ready)
             {
+                // マスタークライアントだけにボタン表示
+
+                pointButton1.SetActive(true);
+                pointButton2.SetActive(true);
+                boundButton.SetActive(true);
+                accelButton.SetActive(true);
                 if (se)
                 {
                     // 音を鳴らす

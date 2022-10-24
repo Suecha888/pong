@@ -8,7 +8,6 @@ public class showmatchpoint : MonoBehaviourPun
     public AudioClip SE1;
     AudioSource audioSource;
     public static bool reset = true;
-
     // 何点マッチか
     int score = 0;
     // 表示テキスト
@@ -28,6 +27,7 @@ public class showmatchpoint : MonoBehaviourPun
             ShowMatchPoint();
             reset = false;
         }
+        
     }
 
     public void PointAddClick()
@@ -61,4 +61,5 @@ public class showmatchpoint : MonoBehaviourPun
         DontDestroy.instance.GetComponent<Setting>().MinusMaxScore();
         ShowMatchPoint();
     }
+    
 }

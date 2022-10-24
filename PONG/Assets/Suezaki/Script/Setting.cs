@@ -51,6 +51,10 @@ public class Setting : MonoBehaviour
     {
         return MaxScore;
     }
+    public void SetMaxScore(int num)
+    {
+        MaxScore = num;
+    }
     // 最大スコアセット
     public void AddMaxScore()
     {
