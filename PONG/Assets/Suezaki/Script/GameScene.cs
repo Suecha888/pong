@@ -60,14 +60,6 @@ public class GameScene : MonoBehaviourPunCallbacks
         //    setobj();
         //}
 
-
-        // ƒ‹[ƒ€Ø’fi‰¼j
-        if(Input.GetKey(KeyCode.C))
-        {
-            DontDestroy.instance.GetComponent<SceneChange>().UpdateLeave();
-            DontDestroy.instance.GetComponent<SceneChange>().LeaveRoom();
-        }
-
         // Œˆ’…‚ª‚Â‚¢‚½‚©‚Ç‚¤‚©
         if(battle_data.flg)
         {
