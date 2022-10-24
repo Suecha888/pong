@@ -7,6 +7,8 @@ using Photon.Pun;
 
 public class InputName : MonoBehaviourPunCallbacks
 {
+    public GameObject TitlePanel;
+    public GameObject InputNamePanel;
     public TMP_Text tmpName;
     public TMP_Text Inputname;
     string noname;
@@ -40,16 +42,20 @@ public class InputName : MonoBehaviourPunCallbacks
         // 音を鳴らす
         audioSource.PlayOneShot(SE1);
         // 名前が入力されていなかったら
-        if(Inputname.text.Length == 1)
+        if (Inputname.text.Length == 1)
         {
-            Debug.Log("noname");
+            // 名前を表示する
+            tmpName.text = "NickName : " + noname.ToString();
+            // 名前を設定
+            PhotonNetwork.NickName = noname;
         }
-
-        // 名前を表示する
-        tmpName.text = "NickName : " + Inputname.text.ToString();
-        // 名前を設定
-        PhotonNetwork.NickName = Inputname.text;
-        //Debug.Log(PhotonNetwork.NickName);
+        else
+        {
+            // 名前を表示する
+            tmpName.text = "NickName : " + Inputname.text.ToString();
+            // 名前を設定
+            PhotonNetwork.NickName = Inputname.text;
+        }
 
         // InputFieldの文字を消去
         TMP_InputField deleteName = GameObject.Find("InputNickname").GetComponent<TMP_InputField>();
@@ -61,5 +67,23 @@ public class InputName : MonoBehaviourPunCallbacks
 
         // Joinボタンとテキストの表示
         JoinButton.SetActive(true);
+    }
+
+    public void BackClick()
+    {
+        // コルーチン開始
+        StartCoroutine("SetPanel");
+    }
+
+    IEnumerator SetPanel()
+    {
+        // 音を鳴らす
+        audioSource.PlayOneShot(SE1);
+
+        // 数秒停止
+        yield return new WaitForSeconds(0.5f);
+
+        TitlePanel.SetActive(true);
+        InputNamePanel.SetActive(false);
     }
 }

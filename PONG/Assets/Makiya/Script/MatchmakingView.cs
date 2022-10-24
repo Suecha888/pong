@@ -26,7 +26,8 @@ public class MatchmakingView : MonoBehaviourPunCallbacks
         canvasGroup = GetComponent<CanvasGroup>();
         // ロビーに参加するまでは、入力できないようにする
         canvasGroup.interactable = false;
-
+        // ルーム作成ボタンを押せなくする
+        createRoomButton.interactable = false;
         // ルームリスト表示を初期化する
         roomListView.Init(this);
 
@@ -55,7 +56,6 @@ public class MatchmakingView : MonoBehaviourPunCallbacks
     {
         // ロビーに参加したら、入力できるようにする
         canvasGroup.interactable = true;
-        Debug.Log("ロビーに接続成功");
     }
 
     private void OnRoomNameInputFieldValueChanged(string value)
