@@ -75,10 +75,22 @@ public class GameScene : MonoBehaviourPunCallbacks
         else
         {
 
+            
+
+            // どちらかが得点
+            if (ball.GetComponent<Ball>().ScorePlayerId > -1)
+            {
+                // 得点処理
+                DontDestroy.instance.GetComponent<Data>().winner.name = score.transform.GetChild(0).transform.GetChild(ball.GetComponent<Ball>().ScorePlayerId).name;
+                DontDestroy.instance.GetComponent<Event>().ScoreEvent[ball.GetComponent<Ball>().ScorePlayerId].Invoke(1, battle_data);
+                // ボールの状態をリセット
+                ball.GetComponent<Ball>().ResetBall();
+            }
+
             // press ~~ の表示
             if (ball.GetComponent<Ball>().GetBallMoveFlg())
             {
-                if(ball.GetComponent<Ball>().GetBallDir() == 1)
+                if (ball.GetComponent<Ball>().GetBallDir() == 1)
                 {
                     message.transform.Find("right").gameObject.SetActive(true);
                 }
@@ -101,17 +113,6 @@ public class GameScene : MonoBehaviourPunCallbacks
                 message.SetActive(false);
             }
 
-            // どちらかが得点
-            if (ball.GetComponent<Ball>().ScorePlayerId > -1)
-            {
-                // 得点処理
-                DontDestroy.instance.GetComponent<Data>().winner.name = score.transform.GetChild(0).transform.GetChild(ball.GetComponent<Ball>().ScorePlayerId).name;
-                DontDestroy.instance.GetComponent<Event>().ScoreEvent[ball.GetComponent<Ball>().ScorePlayerId].Invoke(1, battle_data);
-                // ボールの状態をリセット
-                ball.GetComponent<Ball>().ResetBall();
-            }
-
-            
         }
 
         

@@ -188,6 +188,7 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
         // •Ç‚ÆƒvƒŒƒCƒ„[‚É“¯‚É“–‚½‚é
         if(colList.Count == 2)
         {
+            Debug.Log("double");
             if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
             {
                 // ‘¤–Ê‚É“–‚½‚Á‚½‚çÁ‚¦‚é
