@@ -2209,19 +2209,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 509709417}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 509709419}
-        m_TargetAssemblyTypeName: JoinRoom, Assembly-CSharp
-        m_MethodName: JoinButtonClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &509709417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2275,6 +2263,7 @@ MonoBehaviour:
   InputNamePanel: {fileID: 819644729}
   RoomPanel: {fileID: 494812911}
   SE1: {fileID: 8300000, guid: b258816009d8f61488e890f113968dba, type: 3}
+  JoinRoomButton: {fileID: 509709416}
 --- !u!82 &509709420
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3655,8 +3644,8 @@ MonoBehaviour:
   namenum: {fileID: 1282610697}
   Placeholder: {fileID: 1517839638}
   Text_tmp: {fileID: 1582841415}
-  JoinButton: {fileID: 509709414}
   SE1: {fileID: 8300000, guid: b258816009d8f61488e890f113968dba, type: 3}
+  JoinRoomButton: {fileID: 509709416}
 --- !u!114 &924629502
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,9 +18,9 @@ public class InputName : MonoBehaviourPunCallbacks
     string placeholder_text;
     public TMP_Text Text_tmp;
     string Texttmp_text;
-    public GameObject JoinButton;
     public AudioClip SE1;
     AudioSource audioSource;
+    public Button JoinRoomButton;
 
     private void Start()
     {
@@ -65,8 +65,8 @@ public class InputName : MonoBehaviourPunCallbacks
         Placeholder.text = placeholder_text.ToString();
         Text_tmp.text = Texttmp_text.ToString();
 
-        // Joinボタンとテキストの表示
-        JoinButton.SetActive(true);
+        // ボタンを押せるようにする
+        JoinRoomButton.interactable = true;
     }
 
     public void BackClick()
