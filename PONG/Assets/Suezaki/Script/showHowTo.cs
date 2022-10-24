@@ -97,11 +97,15 @@ public class showHowTo : MonoBehaviour
     [SerializeField]
     AnimationCurve curve;
 
+    public AudioClip SE1;
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         rect = GetComponent<RectTransform>();
         rect.localPosition = new Vector2(rect.localPosition.x, curve.Evaluate(time));
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -136,6 +140,9 @@ public class showHowTo : MonoBehaviour
 
     public void showhowto()
     {
+        // ‰¹‚ð–Â‚ç‚·
+        audioSource.PlayOneShot(SE1);
+
         onFlg = true;
         Move = !Move;
     }

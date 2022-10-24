@@ -23,5 +23,6 @@ public class howto : MonoBehaviour
     {
         // ‰¹‚ð–Â‚ç‚·
         audioSource.PlayOneShot(SE1);
+        Debug.Log("‰¹‚ª‚È‚Á‚½");
     }
 }
