@@ -23,8 +23,6 @@ public class JoinRoom : MonoBehaviourPunCallbacks
 
     public void JoinButtonClicked()
     {
-        // ルーム作成ボタンを押せなくする
-        JoinRoomButton.interactable = false;
         // Photonサーバーに接続していなかったら
         if (!PhotonNetwork.IsConnected)
         {
