@@ -268,7 +268,7 @@ public class Ball : MonoBehaviourPunCallbacks,IPunObservable
                     }
                     
 
-                    Vector3 returnVec = new Vector3(vecx, 4.78f/16.0f/*Mathf.Tan(angle * Mathf.Deg2Rad)*/, 0).normalized;
+                    Vector3 returnVec = new Vector3(vecx, Mathf.Tan(angle * Mathf.Deg2Rad), 0).normalized;
                     rb.velocity = afterReflectVero.magnitude * returnVec;
                 }
                 else
