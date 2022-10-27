@@ -17,4 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test/Suezaki/end.unity
     guid: 2b86eca462e70fa4fabe3a0bfe1c5f7d
+  - enabled: 1
+    path: Assets/Scenes/Test/Suezaki/gamebefore_offline.unity
+    guid: f8b8701c49087004baee4d01c82f1433
+  - enabled: 1
+    path: Assets/Scenes/Test/Suezaki/game_offline.unity
+    guid: 64f5209a8dfa807488c460d5d48fee2f
+  - enabled: 1
+    path: Assets/Scenes/Test/Suezaki/end_offline.unity
+    guid: 758dd370e56aa644584ff21b76036710
   m_configObjects: {}

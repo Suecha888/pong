@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class moveExplainBar : MonoBehaviour
 {
+    [SerializeField]
+    KeyCode up = KeyCode.W;
+    [SerializeField]
+    KeyCode down = KeyCode.S;
     RectTransform rect;
     float startY;
     [SerializeField]
@@ -20,7 +24,7 @@ public class moveExplainBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(up))
         {
             float pos = rect.localPosition.y;
             pos += speed.y;
@@ -31,7 +35,7 @@ public class moveExplainBar : MonoBehaviour
                 rect.localPosition = new Vector2(rect.localPosition.x, pos);
 
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(down))
         {
             float pos = rect.localPosition.y;
             pos -= speed.y;

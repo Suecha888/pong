@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - score
   - setting
+  - Player2
   layers:
   - Default
   - TransparentFX

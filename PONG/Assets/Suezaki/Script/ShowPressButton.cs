@@ -21,7 +21,7 @@ public class ShowPressButton : MonoBehaviour
     }
     private void Update()
     {
-        if (sceneObject.GetComponent<StartScene>() != null)
+        if (sceneObject.GetComponent<StartScene>() != null || sceneObject.GetComponent<gamebeforeoffline>() != null)
         {
             pressButtonText.color = gradient.Evaluate(Mathf.PingPong(Time.time, 1.0f));
         }

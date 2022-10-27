@@ -37,6 +37,12 @@ public class showballaccel : MonoBehaviourPun
         audioSource.PlayOneShot(SE1);
         photonView.RPC(nameof(SetAccelSwitch), RpcTarget.All);
     }
+    public void AccelClickOffline()
+    {
+        // ‰¹‚ð–Â‚ç‚·
+        audioSource.PlayOneShot(SE1);
+        SetAccelSwitch();
+    }
 
     public void ShowAccel()
     {

@@ -36,12 +36,25 @@ public class showmatchpoint : MonoBehaviourPun
         audioSource.PlayOneShot(SE1);
         photonView.RPC(nameof(SetMatchPointAdd), RpcTarget.All);
     }
-
+    public void PointAddClickOffline()
+    {
+        // ‰¹‚ð–Â‚ç‚·
+        audioSource.PlayOneShot(SE1);
+        DontDestroy.instance.GetComponent<Setting>().AddMaxScore();
+        ShowMatchPoint();
+    }
     public void PointMinusClick()
     {
         // ‰¹‚ð–Â‚ç‚·
         audioSource.PlayOneShot(SE1);
         photonView.RPC(nameof(SetMatchPointMinus), RpcTarget.All);
+    }
+    public void PointMinusClickOffline()
+    {
+        // ‰¹‚ð–Â‚ç‚·
+        audioSource.PlayOneShot(SE1);
+        DontDestroy.instance.GetComponent<Setting>().MinusMaxScore();
+        ShowMatchPoint();
     }
 
     public void ShowMatchPoint()

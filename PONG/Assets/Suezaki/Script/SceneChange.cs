@@ -11,6 +11,12 @@ public class SceneChange : MonoBehaviourPunCallbacks
     // シーンのリスト
     [SerializeField]
     List<string> scenes = new List<string>();
+
+    [SerializeField]
+    List<string> offlinescenes = new List<string>();
+    int offlineindex = 0;
+    int offlinemax = 0;
+
     // シーンのインデックス
     int index = 0;
     // シーンの最大数
@@ -28,12 +34,21 @@ public class SceneChange : MonoBehaviourPunCallbacks
     void Start()
     {
         max = scenes.Count;
+        offlinemax = offlinescenes.Count;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OfflineSceneChange()
     {
-        
+        offlineindex++;
+        SceneManager.LoadScene(offlinescenes[offlineindex % offlinemax]);
+    }
+    public void PlayOfflineGame()
+    {
+        SceneManager.LoadScene(offlinescenes[0]);
+    }
+    public void EndOfflineGame()
+    {
+        SceneManager.LoadScene(scenes[0]);
     }
     // シーン切替
     public void ChangeScene()

@@ -6,6 +6,8 @@ using TMPro;
 public class LightS : MonoBehaviour
 {
     [SerializeField]
+    KeyCode key = KeyCode.S;
+    [SerializeField]
     Gradient gradient;
     TextMeshProUGUI text;
     float time = 0.0f;
@@ -21,7 +23,7 @@ public class LightS : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.S))
+        if(Input.GetKey(key))
         {
             text.color = gradient.Evaluate(Mathf.PingPong(time, 1.0f));
             time += Time.deltaTime * times;

@@ -37,6 +37,12 @@ public class showreflectball : MonoBehaviourPun
         audioSource.PlayOneShot(SE1);
         photonView.RPC(nameof(SetReflectSwitch), RpcTarget.All);
     }
+    public void BoundClickOffline()
+    {
+        // ‰¹‚ð–Â‚ç‚·
+        audioSource.PlayOneShot(SE1);
+        SetReflectSwitch();
+    }
 
     public void ShowReflect()
     {
