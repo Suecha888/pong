@@ -48,7 +48,6 @@ public class RoomView : MonoBehaviourPunCallbacks
     // マスターサーバーのロビーにいる間にルームリストを更新するために呼ばれる
     public override void OnRoomListUpdate(List<RoomInfo> changedRoomList)
     {
-        //Debug.Log("OnRoomListUpdateが呼ばれた");
         roomList.Update(changedRoomList);
 
         // 存在するルームの数だけルームリスト要素を表示する

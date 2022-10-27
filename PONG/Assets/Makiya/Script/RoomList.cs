@@ -11,19 +11,14 @@ public class RoomList : IEnumerable<RoomInfo>
     {
         foreach (var info in changeRoomList)
         {
-            //Debug.Log("削除されたか" + info.RemovedFromList);
-            //if(info.PlayerCount <= 0)
             if (info.RemovedFromList)   // ロビーで使用され、リストに表示されなくなったルーム（満室、終了、非表示）
             {
-                //Debug.Log("ルームを消す：" + info.Name);
                 dictionary.Remove(info.Name);
             }
             else
             {
-                //Debug.Log("ルームを追加：" + info.Name);
                 dictionary[info.Name] = info;
             }
-            //Debug.Log("info情報：" + info);
         }
     }
 
