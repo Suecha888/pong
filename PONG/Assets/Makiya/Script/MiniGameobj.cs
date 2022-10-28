@@ -13,6 +13,7 @@ public class MiniGameobj : MonoBehaviour
     public Button boundButton;
     public Button accelButton;
     public Button Back;
+    public Button Gamebutton;
 
     public GameObject gameobj;
 
@@ -33,5 +34,6 @@ public class MiniGameobj : MonoBehaviour
         boundButton.interactable = false;
         accelButton.interactable = false;
         Back.interactable = false;
+        Gamebutton.interactable = false;
     }
 }

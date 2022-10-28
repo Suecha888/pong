@@ -13,6 +13,7 @@ public class MiniGame : MonoBehaviour
     public Button boundButton;
     public Button accelButton;
     public Button Back;
+    public Button Gamebutton;
     public GameObject gameobj;
 
     // Start is called before the first frame update
@@ -45,5 +46,6 @@ public class MiniGame : MonoBehaviour
         boundButton.interactable = true;
         accelButton.interactable = true;
         Back.interactable = true;
+        Gamebutton.interactable = true;
     }
 }
