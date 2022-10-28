@@ -263,7 +263,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: b165e527e66d5b041847a687f0e4a0d9, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -948,8 +948,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d14d6582584a6e841a6ea568ba6f544f, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 42f65988d6d747f46afc5848be8fa543, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4252,7 +4252,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8839519785135259003, guid: b4135739554bd7e4da5495b933dc11b9, type: 3}
       propertyPath: m_text
-      value: Offline
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8839519785135259003, guid: b4135739554bd7e4da5495b933dc11b9, type: 3}
       propertyPath: m_fontAsset
@@ -4263,9 +4263,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7892303464708042159, guid: 3d763c07b63f1254f9579f098a50a5dc, type: 2}
     - target: {fileID: 8839519785328904328, guid: b4135739554bd7e4da5495b933dc11b9, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839519785328904328, guid: b4135739554bd7e4da5495b933dc11b9, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d14d6582584a6e841a6ea568ba6f544f, type: 3}
+      objectReference: {fileID: 21300000, guid: 2287d4b48652c6f42b82c37cc1486221, type: 3}
     - target: {fileID: 8839519785328904333, guid: b4135739554bd7e4da5495b933dc11b9, type: 3}
       propertyPath: m_Name
       value: playofflinebutton
@@ -4365,6 +4369,18 @@ PrefabInstance:
     - target: {fileID: 8839519785328904334, guid: b4135739554bd7e4da5495b933dc11b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839519785328904335, guid: b4135739554bd7e4da5495b933dc11b9, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839519785328904335, guid: b4135739554bd7e4da5495b933dc11b9, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839519785328904335, guid: b4135739554bd7e4da5495b933dc11b9, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.78431374
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4135739554bd7e4da5495b933dc11b9, type: 3}
@@ -4635,7 +4651,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: c5a2117634eab294ea6585254a5036ce, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6305,7 +6321,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: miniGame
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3d763c07b63f1254f9579f098a50a5dc, type: 2}
   m_sharedMaterial: {fileID: 7892303464708042159, guid: 3d763c07b63f1254f9579f098a50a5dc, type: 2}
@@ -10208,7 +10224,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: c5a2117634eab294ea6585254a5036ce, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10385,7 +10401,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 21150546}
   m_HandleRect: {fileID: 21150545}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -10404,14 +10420,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: b165e527e66d5b041847a687f0e4a0d9, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
